@@ -24,6 +24,8 @@ module.exports = {
     "func-names": 0,
     // enforces use of function declarations or expressions
     "func-style": 0,
+    // disallow certain identifiers to prevent them being used
+    "id-blacklist": 0,
     // this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
     "id-length": 0,
     // require identifiers to match the provided regular expression
@@ -34,6 +36,8 @@ module.exports = {
     "jsx-quotes": 0,
     // enforces spacing between keys and values in object literal properties
     "key-spacing": 0,
+    // enforce spacing before and after keywords
+    "keyword-spacing": 0,
     // disallow mixed "LF" and "CRLF" as linebreaks
     "linebreak-style": 0,
     // enforces empty lines around comments
@@ -48,12 +52,18 @@ module.exports = {
     "max-params": 0,
     // specify the maximum number of statement allowed in a function
     "max-statements": 0,
+    // specify the maximum number of statements allowed per line
+    "max-statements-per-line": 0,
     // require a capital letter for constructors
     "new-cap": 0,
     // disallow the omission of parentheses when invoking a constructor with no arguments
     "new-parens": 0,
     // allow/disallow an empty newline after var statement
     "newline-after-var": 0,
+    // require newline before return statement
+    "newline-before-return": 0,
+    // enforce newline after each call when chaining the calls
+    "newline-per-chained-call": 0,
     // disallow use of the Array constructor
     "no-array-constructor": 0,
     // disallow use of bitwise operators
@@ -88,10 +98,14 @@ module.exports = {
     "no-underscore-dangle": 0,
     // disallow the use of Boolean literals in conditional expressions
     "no-unneeded-ternary": 0,
+    // disallow whitespace before properties
+    "no-whitespace-before-property": 0,
     // require or disallow padding inside curly braces
     "object-curly-spacing": 0,
     // allow just one var statement per function
     "one-var": 0,
+    // require or disallow an newline around variable declarations
+    "one-var-declaration-per-line": 0,
     // require assignment operator shorthand where possible or prohibit it entirely
     "operator-assignment": 0,
     // enforce operators to be placed before or after line breaks
@@ -104,14 +118,14 @@ module.exports = {
     "quotes": 0,
     // Require JSDoc comment
     "require-jsdoc": 0,
-    // enforce spacing before and after semicolons
-    "semi-spacing": 0,
     // require or disallow use of semicolons instead of ASI
     "semi": 0,
+    // enforce spacing before and after semicolons
+    "semi-spacing": 0,
+    // enforce sorting import declarations within module
+    "sort-imports": 0,
     // sort variables within the same declaration block
     "sort-vars": 0,
-    // require a space before/after certain keywords
-    "keyword-spacing": 0,
     // require or disallow space before blocks
     "space-before-blocks": 0,
     // require or disallow space before function opening parenthesis
