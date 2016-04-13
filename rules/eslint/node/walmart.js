@@ -17,6 +17,8 @@ module.exports = {
     "no-new-require": 2,
     // disallow string concatenation with __dirname and __filename
     "no-path-concat": 0,
+    // disallow use of process.env
+    "no-process-env": 0,
     // disallow process.exit()
     "no-process-exit": 2,
     // restrict usage of specified node modules

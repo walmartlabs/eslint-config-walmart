@@ -24,6 +24,8 @@ module.exports = {
     "func-names": 0,
     // enforces use of function declarations or expressions
     "func-style": [2, "expression"],
+    // disallow certain identifiers to prevent them being used
+    "id-blacklist": 0,
     // this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
     "id-length": 0,
     // require identifiers to match the provided regular expression
@@ -34,6 +36,8 @@ module.exports = {
     "jsx-quotes": [2, "prefer-double"],
     // enforces spacing between keys and values in object literal properties
     "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
+    // enforce spacing before and after keywords
+    "keyword-spacing": 0,
     // disallow mixed "LF" and "CRLF" as linebreaks
     "linebreak-style": [0, "unix"],
     // enforces empty lines around comments
@@ -48,12 +52,18 @@ module.exports = {
     "max-params": [2, 3],
     // specify the maximum number of statement allowed in a function
     "max-statements": [2, 15],
+    // specify the maximum number of statements allowed per line
+    "max-statements-per-line": 0,
     // require a capital letter for constructors
     "new-cap": 2,
     // disallow the omission of parentheses when invoking a constructor with no arguments
     "new-parens": 2,
     // allow/disallow an empty newline after var statement
     "newline-after-var": 0,
+    // require newline before return statement
+    "newline-before-return": 0,
+    // enforce newline after each call when chaining the calls
+    "newline-per-chained-call": 0,
     // disallow use of the Array constructor
     "no-array-constructor": 2,
     // disallow use of bitwise operators
@@ -88,10 +98,14 @@ module.exports = {
     "no-underscore-dangle": 0,
     // disallow the use of Boolean literals in conditional expressions
     "no-unneeded-ternary": 0,
+    // disallow whitespace before properties
+    "no-whitespace-before-property": 0,
     // require or disallow padding inside curly braces
     "object-curly-spacing": [0, "never"],
     // allow just one var statement per function
     "one-var": [2, "never"],
+    // require or disallow an newline around variable declarations
+    "one-var-declaration-per-line": 0,
     // require assignment operator shorthand where possible or prohibit it entirely
     "operator-assignment": [2, "always"],
     // enforce operators to be placed before or after line breaks
@@ -108,6 +122,10 @@ module.exports = {
     "semi-spacing": [2, {"before": false, "after": true}],
     // require or disallow use of semicolons instead of ASI
     "semi": 2,
+    // enforce spacing before and after semicolons
+    "semi-spacing": 0,
+    // enforce sorting import declarations within module
+    "sort-imports": 0,
     // sort variables within the same declaration block
     "sort-vars": 0,
     // require a space before/after certain keywords
