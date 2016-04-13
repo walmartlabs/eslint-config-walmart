@@ -5,6 +5,11 @@ module.exports = {
     "defaults/configurations/walmart/es6",
     "defaults/rules/react/walmart"
   ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "globals": {
     "fetch": false
   },

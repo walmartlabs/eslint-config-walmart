@@ -4,9 +4,6 @@ module.exports = {
   "env": {
     "es6": true
   },
-  "ecmaFeatures": {
-    "modules": true
-  },
   "rules": {
     // require braces in arrow function body
     "arrow-body-style": 0,

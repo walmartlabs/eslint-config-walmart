@@ -11,8 +11,12 @@ module.exports = {
     "defaults/rules/eslint/variables/walmart",
     "defaults/rules/filenames/walmart"
   ],
+  "parserOptions": {
+    "ecmaVersion": 5,
+    "sourceType": "script",
+    "ecmaFeatures": {}
+  },
   "env": {},
-  "ecmaFeatures": {},
   "globals": {
     "require": false,
     "module": false,

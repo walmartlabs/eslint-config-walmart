@@ -20,8 +20,6 @@ module.exports = {
     "no-dupe-keys": 0,
     // disallow a duplicate case label.
     "no-duplicate-case": 0,
-    // disallow the use of empty character classes in regular expressions
-    "no-empty-character-class": 0,
     // disallow empty statements
     "no-empty": 0,
     // disallow the use of empty character classes in regular expressions

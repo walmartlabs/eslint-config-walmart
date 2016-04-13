@@ -4,9 +4,6 @@ module.exports = {
   "env": {
     "es6": false
   },
-  "ecmaFeatures": {
-    "modules": false
-  },
   "rules": {
     // require braces in arrow function body
     "arrow-body-style": 0,
@@ -54,7 +51,7 @@ module.exports = {
     "prefer-template": 0,
     // disallow generator functions that do not have yield
     "require-yield": 0,
-    // enforce spacing around embedded expressions of template strings 
+    // enforce spacing around embedded expressions of template strings
     "template-curly-spacing": 0,
     // enforce spacing around the * in yield* expressions
     "yield-star-spacing": 0

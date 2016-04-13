@@ -37,7 +37,7 @@ module.exports = {
     // enforces spacing between keys and values in object literal properties
     "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
     // enforce spacing before and after keywords
-    "keyword-spacing": 0,
+    "keyword-spacing": [2, {"before": true, "after": true}],
     // disallow mixed "LF" and "CRLF" as linebreaks
     "linebreak-style": [0, "unix"],
     // enforces empty lines around comments
@@ -118,18 +118,14 @@ module.exports = {
     "quotes": [2, "double"],
     // Require JSDoc comment
     "require-jsdoc": 0,
-    // enforce spacing before and after semicolons
-    "semi-spacing": [2, {"before": false, "after": true}],
     // require or disallow use of semicolons instead of ASI
     "semi": 2,
     // enforce spacing before and after semicolons
-    "semi-spacing": 0,
+    "semi-spacing": [2, {"before": false, "after": true}],
     // enforce sorting import declarations within module
     "sort-imports": 0,
     // sort variables within the same declaration block
     "sort-vars": 0,
-    // require a space before/after certain keywords
-    "keyword-spacing": [2, {"before": true, "after": true}],
     // require or disallow space before blocks
     "space-before-blocks": [2, "always"],
     // require or disallow space before function opening parenthesis

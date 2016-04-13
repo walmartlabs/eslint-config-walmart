@@ -6,7 +6,11 @@ module.exports = {
     "defaults/rules/eslint/es6/walmart"
   ],
   "parser": "babel-eslint",
-  "rules": {
-    "strict": [2, "global"]
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true
+    }
   }
 };
