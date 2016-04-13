@@ -12,6 +12,19 @@ extends:
   - "./rules/filenames/walmart.js"
   - "./rules/eslint/node/walmart.js"
 
+parserOptions:
+  ecmaVersion: 5
+  sourceType: "script"
+  ecmaFeatures: {}
+
+env:
+  amd: true
+  node: true
+
+globals:
+  module: false
+  process: false
+
 rules:
   "strict": [2, "global"]
   "no-magic-numbers": 0     # Magic numbers _define_ the rule settings.
