@@ -1,9 +1,6 @@
 "use strict";
 
 module.exports = {
-  "env": {
-    "es6": true
-  },
   "rules": {
     // require braces in arrow function body
     "arrow-body-style": 0,

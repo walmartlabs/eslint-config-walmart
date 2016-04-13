@@ -1,9 +1,6 @@
 "use strict";
 
 module.exports = {
-  "env": {
-    "node": true
-  },
   "rules": {
     // enforce return after a callback
     "callback-return": 2,

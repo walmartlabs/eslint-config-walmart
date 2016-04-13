@@ -16,9 +16,10 @@ module.exports = {
     "sourceType": "script",
     "ecmaFeatures": {}
   },
-  "env": {},
+  "env": {
+    "amd": true
+  },
   "globals": {
-    "require": false,
     "module": false,
     "process": false
   },

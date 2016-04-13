@@ -12,5 +12,10 @@ module.exports = {
     "ecmaFeatures": {
       "impliedStrict": true
     }
-  }
+  },
+  "env": {
+    "es6": true
+  },
+  "globals": {},
+  "rules": {}
 };
