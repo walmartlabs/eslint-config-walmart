@@ -1,14 +1,14 @@
-<h1 align="center">eslint-config-defaults</h1>
+<h1 align="center">eslint-config-walmart</h1>
 
 <p align="center">
-  <a title='npm version' href="https://npmjs.org/package/eslint-config-defaults">
-    <img src='http://img.shields.io/npm/v/eslint-config-defaults.svg' />
+  <a title='npm version' href="https://npmjs.org/package/eslint-config-walmart">
+    <img src='http://img.shields.io/npm/v/eslint-config-walmart.svg' />
   </a>
   <a title='License' href="https://opensource.org/licenses/MIT">
     <img src='https://img.shields.io/badge/license-MIT-blue.svg' />
   </a>
-  <a title='Build Status' href='https://travis-ci.org/walmartlabs/eslint-config-defaults'>
-    <img src='https://api.travis-ci.org/walmartlabs/eslint-config-defaults.svg?branch=master' />
+  <a title='Build Status' href='https://travis-ci.org/walmartlabs/eslint-config-walmart'>
+    <img src='https://api.travis-ci.org/walmartlabs/eslint-config-walmart.svg?branch=master' />
   </a>
 </p>
 
@@ -18,12 +18,14 @@
 
 ***
 
+This project is the maintained offshoot of [eslint-config-defaults](https://github.com/walmartlabs/eslint-config-defaults) with just the Walmart Labs-flavored rules included. It is `eslint@2+`-compatible and actively maintained (with love) by the friendly folks at Walmart Labs.
+
 ## Installation
 
 Install this config package and ESLint:
 
 ```bash
-$ npm install --save-dev eslint eslint-config-defaults
+$ npm install --save-dev eslint eslint-config-walmart
 ```
 
 ## Usage

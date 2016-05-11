@@ -1,16 +1,16 @@
 {
-  "name"            : "eslint-config-defaults",
-  "description"     : "A set of default eslint configuration",
+  "name"            : "eslint-config-walmart",
+  "description"     : "A set of default eslint configurations, Walmart Labs style.",
 
   "version"         : "10.0.0-1",
   "author"          : "Eric Baer <me@ericbaer.com>",
 
-  "homepage"        : "https://github.com/walmartlabs/eslint-config-defaults",
+  "homepage"        : "https://github.com/walmartlabs/eslint-config-walmart",
   "bugs": {
-    "url": "https://github.com/walmartlabs/eslint-config-defaults/issues"
+    "url": "https://github.com/walmartlabs/eslint-config-walmart/issues"
   },
 
-  "repository"      : "git://github.com/walmartlabs/eslint-config-defaults.git",
+  "repository"      : "git://github.com/walmartlabs/eslint-config-walmart.git",
   "private"         : false,
 
   "dependencies": {
