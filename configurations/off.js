@@ -10,8 +10,12 @@ module.exports = {
     "defaults/rules/eslint/style/off",
     "defaults/rules/eslint/variables/off"
   ],
+  "parserOptions": {
+    "ecmaVersion": 5,
+    "sourceType": "script",
+    "ecmaFeatures": {}
+  },
   "env": {},
-  "ecmaFeatures": {},
   "globals": {},
   "rules": {}
 };

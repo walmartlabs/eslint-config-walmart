@@ -1,19 +1,12 @@
 "use strict";
 
 module.exports = {
-  "extends": [
-    "defaults/configurations/walmart/es6",
-    "defaults/rules/react/walmart"
-  ],
-  "globals": {
-    "fetch": false
-  },
+  "extends": "defaults/configurations/walmart/es6-react",
   "env": {
-    "mocha": true
+    "mocha": true,
+    "phantomjs": true
   },
   "rules": {
-    "max-nested-callbacks": 0,
-    "no-extra-parens": 0,
-    "no-var": 2
+    "max-nested-callbacks": 0
   }
 };

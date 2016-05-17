@@ -1,14 +1,14 @@
-<h1 align="center">eslint-config-defaults</h1>
+<h1 align="center">eslint-config-walmart</h1>
 
 <p align="center">
-  <a title='npm version' href="https://npmjs.org/package/eslint-config-defaults">
-    <img src='http://img.shields.io/npm/v/eslint-config-defaults.svg' />
+  <a title='npm version' href="https://npmjs.org/package/eslint-config-walmart">
+    <img src='http://img.shields.io/npm/v/eslint-config-walmart.svg' />
   </a>
   <a title='License' href="https://opensource.org/licenses/MIT">
     <img src='https://img.shields.io/badge/license-MIT-blue.svg' />
   </a>
-  <a title='Build Status' href='https://travis-ci.org/walmartlabs/eslint-config-defaults'>
-    <img src='https://api.travis-ci.org/walmartlabs/eslint-config-defaults.svg?branch=master' />
+  <a title='Build Status' href='https://travis-ci.org/walmartlabs/eslint-config-walmart'>
+    <img src='https://api.travis-ci.org/walmartlabs/eslint-config-walmart.svg?branch=master' />
   </a>
 </p>
 
@@ -18,12 +18,14 @@
 
 ***
 
+This project is the maintained offshoot of [eslint-config-defaults](https://github.com/walmartlabs/eslint-config-defaults) with just the Walmart Labs-flavored rules included. It is `eslint@2+`-compatible and actively maintained (with love) by the friendly folks at Walmart Labs.
+
 ## Installation
 
 Install this config package and ESLint:
 
 ```bash
-$ npm install --save-dev eslint eslint-config-defaults
+$ npm install --save-dev eslint eslint-config-walmart
 ```
 
 ## Usage
@@ -32,15 +34,8 @@ $ npm install --save-dev eslint eslint-config-defaults
 
 This package includes the following complete and ready to use configurations:
 
-- `defaults` - The config [recommended](https://github.com/eslint/eslint/blob/master/conf/eslint.json) by ESLint
-- `defaults/configurations/eslint` - The config [recommended](https://github.com/eslint/eslint/blob/master/conf/eslint.json) by ESLint
-- `defaults/configurations/google` - The [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
-- `defaults/configurations/gulp` - The [Gulp ESLint config](https://github.com/gulpjs/eslint-config-gulp)
-- `defaults/configurations/node-runtime` - The config [used for the Node.js runtime](https://github.com/nodejs/node/blob/master/.eslintrc)
+- `defaults` - Walmart ES6 config
 - `defaults/configurations/off` - Disable all rules (ESLint's default at 1.0.0+)
-- `defaults/configurations/airbnb/es5` - Config from the [AirBnB Style Guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
-- `defaults/configurations/airbnb/es6-react` - Config from the [AirBnB Style Guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
-- `defaults/configurations/airbnb/es6` - Config from the [AirBnB Style Guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 - `defaults/configurations/walmart/es5-browser` - Walmart ES5 + browser
 - `defaults/configurations/walmart/es5-node` - Walmart ES5 + node < 4.x
 - `defaults/configurations/walmart/es5-test` - Walmart ES5 + test
@@ -86,8 +81,6 @@ ESLint configuration is broken apart in `./rules` containing ESLint's rules and 
 ---
 "extends":
   - "defaults/rules/eslint/best-practices/walmart",
-  - "defaults/rules/eslint/errors/airbnb"
-
   - "defaults/rules/eslint/es6/off"
   - "defaults/rules/eslint/node/off"
 
@@ -103,11 +96,7 @@ Due to an issue with ESLint, config extension cannot be called from a globally i
 
 - [ESLint](https://github.com/eslint/eslint) 1.10.3
 - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) 3.12.0
-- [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) 5.0.0
-- [eslint-config-gulp](https://github.com/gulpjs/eslint-config-gulp) 2.0.0
-- [Google JavaScript Style Guide](https://github.com/google/styleguide/tree/43d738ab8bb0c797f78506945729946aacbab17d) 43d738ab8b
 - [eslint-plugin-filenames](https://www.npmjs.com/package/eslint-plugin-filenames) 0.2.0
-- [Node.js](https://github.com/nodejs/node/tree/a84bf2ce68a1ffd5c09c9ff297a56814cd79923f) a84bf2ce68a1ffd5c09c9ff297a56814cd79923f
 
 ## And A Special Thanks To
 
