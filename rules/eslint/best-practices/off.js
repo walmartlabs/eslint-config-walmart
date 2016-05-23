@@ -93,8 +93,6 @@ module.exports = {
     "no-proto": 0,
     // disallow declaring the same variable more then once
     "no-redeclare": 0,
-    // disallow use of process.env
-    "no-process-env": 0,
     // disallow use of assignment in return statement
     "no-return-assign": 0,
     // disallow use of `javascript:` urls.

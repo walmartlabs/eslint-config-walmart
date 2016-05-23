@@ -28,6 +28,8 @@ module.exports = {
     "no-restricted-imports": 0,
     // disallow to use this/super before super() calling in constructors.
     "no-this-before-super": 0,
+    // disallow unnecessary computed property keys in object literals
+    "no-useless-computed-key": 0,
     // disallow unnecessary constructor
     "no-useless-constructor": 0,
     // require let or const instead of var
@@ -48,6 +50,8 @@ module.exports = {
     "prefer-template": 0,
     // disallow generator functions that do not have yield
     "require-yield": 0,
+    // enforce sorted import declarations within modules
+    "sort-imports": 0,
     // enforce spacing around embedded expressions of template strings
     "template-curly-spacing": 0,
     // enforce spacing around the * in yield* expressions
