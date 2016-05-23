@@ -52,6 +52,8 @@ module.exports = {
     "no-unexpected-multiline": 0,
     // disallow unreachable statements after a return, throw, continue, or break statement
     "no-unreachable": 0,
+    // disallow control flow statements in finally blocks
+    "no-unsafe-finally": 0,
     // disallow comparisons with the value NaN
     "use-isnan": 0,
     // ensure JSDoc comments are valid
