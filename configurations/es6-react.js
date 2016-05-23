@@ -2,8 +2,8 @@
 
 module.exports = {
   "extends": [
-    "defaults/configurations/walmart/es6",
-    "defaults/rules/react/walmart"
+    "defaults/configurations/es6",
+    "defaults/rules/react/on"
   ],
   "parserOptions": {
     "ecmaFeatures": {

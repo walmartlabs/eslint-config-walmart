@@ -2,14 +2,14 @@
 
 module.exports = {
   "extends": [
-    "defaults/rules/eslint/best-practices/walmart",
-    "defaults/rules/eslint/errors/walmart",
+    "defaults/rules/eslint/best-practices/on",
+    "defaults/rules/eslint/errors/on",
     "defaults/rules/eslint/es6/off",
     "defaults/rules/eslint/node/off",
-    "defaults/rules/eslint/strict/walmart",
-    "defaults/rules/eslint/style/walmart",
-    "defaults/rules/eslint/variables/walmart",
-    "defaults/rules/filenames/walmart"
+    "defaults/rules/eslint/strict/on",
+    "defaults/rules/eslint/style/on",
+    "defaults/rules/eslint/variables/on",
+    "defaults/rules/filenames/on"
   ],
   "parserOptions": {
     "ecmaVersion": 5,

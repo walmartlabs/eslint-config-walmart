@@ -2,8 +2,8 @@
 
 module.exports = {
   "extends": [
-    "defaults/configurations/walmart/es5",
-    "defaults/rules/eslint/node/walmart"
+    "defaults/configurations/es5",
+    "defaults/rules/eslint/node/on"
   ],
   "env": {
     "node": true

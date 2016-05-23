@@ -1,16 +1,16 @@
 ---
 extends:
-  # We're manually approximating `configurations/walmart/es5-node` with these
+  # We're manually approximating `configurations/es5-node` with these
   # _local_ imports (since `defaults/` prefix assumes npm-installed).
-  - "./rules/eslint/best-practices/walmart.js"
-  - "./rules/eslint/errors/walmart.js"
+  - "./rules/eslint/best-practices/on.js"
+  - "./rules/eslint/errors/on.js"
   - "./rules/eslint/es6/off.js"
   - "./rules/eslint/node/off.js"
-  - "./rules/eslint/strict/walmart.js"
-  - "./rules/eslint/style/walmart.js"
-  - "./rules/eslint/variables/walmart.js"
-  - "./rules/filenames/walmart.js"
-  - "./rules/eslint/node/walmart.js"
+  - "./rules/eslint/strict/on.js"
+  - "./rules/eslint/style/on.js"
+  - "./rules/eslint/variables/on.js"
+  - "./rules/filenames/on.js"
+  - "./rules/eslint/node/on.js"
 
 parserOptions:
   ecmaVersion: 5

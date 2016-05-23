@@ -2,8 +2,8 @@
 
 module.exports = {
   "extends": [
-    "defaults/configurations/walmart/es6",
-    "defaults/rules/eslint/node/walmart"
+    "defaults/configurations/es6",
+    "defaults/rules/eslint/node/on"
   ],
   rules: {
     // verify super() callings in constructors
