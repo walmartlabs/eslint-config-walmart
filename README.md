@@ -34,22 +34,22 @@ $ npm install --save-dev eslint eslint-config-walmart
 
 This package includes the following complete and ready to use configurations:
 
-- `defaults` - ES6 config
-- `defaults/configurations/off` - Disable all rules (ESLint's default at 1.0.0+)
-- `defaults/configurations/es5-browser` - ES5 + browser
-- `defaults/configurations/es5-node` - ES5 + node < 4.x
-- `defaults/configurations/es5-test` - ES5 + test
-- `defaults/configurations/es5` - ES5 config
-- `defaults/configurations/es6-browser` - ES6 + browser
-- `defaults/configurations/es6-node` - ES6 + node 4.x
-- `defaults/configurations/es6-react-test` - ES6 + react + test
-- `defaults/configurations/es6-react` - ES6 + react
-- `defaults/configurations/es6-test` - ES6 + test
-- `defaults/configurations/es6` - ES6 config
+- `walmart` - ES6 config
+- `walmart/configurations/off` - Disable all rules (ESLint's default at 1.0.0+)
+- `walmart/configurations/es5-browser` - ES5 + browser
+- `walmart/configurations/es5-node` - ES5 + node < 4.x
+- `walmart/configurations/es5-test` - ES5 + test
+- `walmart/configurations/es5` - ES5 config
+- `walmart/configurations/es6-browser` - ES6 + browser
+- `walmart/configurations/es6-node` - ES6 + node 4.x
+- `walmart/configurations/es6-react-test` - ES6 + react + test
+- `walmart/configurations/es6-react` - ES6 + react
+- `walmart/configurations/es6-test` - ES6 + test
+- `walmart/configurations/es6` - ES6 config
 
 ###### Dependencies
 
-- Any config (`defaults/configurations/<suffix>`) - [eslint-plugin-filenames](https://github.com/selaux/eslint-plugin-filenames)
+- Any config (`walmart/configurations/<suffix>`) - [eslint-plugin-filenames](https://github.com/selaux/eslint-plugin-filenames)
 - Any React config (`<prefix>-react`) - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [babel-eslint](https://github.com/babel/babel-eslint)
 - Any ES-next config (`es6-<suffix>`) - [babel-eslint](https://github.com/babel/babel-eslint)
 
@@ -60,13 +60,13 @@ more details about how shareable configs work, see the
 ```yaml
 ---
 "extends":
-  - "defaults"
+  - "walmart"
 ```
 
 ```yaml
 ---
 "extends":
-  - "defaults/configurations/es6-browser"
+  - "walmart/configurations/es6-browser"
 ```
 
 **NOTE:** Extending multiple complete configs can cause unexpected results, if you need to do this you should consider a piecemeal config as explained below. See https://github.com/walmartlabs/eslint-config-defaults/issues/38 for details.
@@ -80,9 +80,9 @@ ESLint configuration is broken apart in `./rules` containing ESLint's rules and 
 ```yaml
 ---
 "extends":
-  - "defaults/rules/eslint/best-practices/on",
-  - "defaults/rules/eslint/es6/off"
-  - "defaults/rules/eslint/node/off"
+  - "walmart/rules/eslint/best-practices/on",
+  - "walmart/rules/eslint/es6/off"
+  - "walmart/rules/eslint/node/off"
 
 "env":
   "phantom": true
