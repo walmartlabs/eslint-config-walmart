@@ -95,7 +95,7 @@ Due to an issue with ESLint, config extension cannot be called from a globally i
 ### This package tracks config in the following versions:
 
 - [ESLint](https://github.com/eslint/eslint) 2.10.2
-- [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) 3.12.0
+- [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) 5.1.1
 - [eslint-plugin-filenames](https://www.npmjs.com/package/eslint-plugin-filenames) 0.2.0
 
 ## And A Special Thanks To

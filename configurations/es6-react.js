@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports = {
+  "parser": "babel-eslint",
   "extends": [
     "defaults/configurations/es6",
     "defaults/rules/react/on"
