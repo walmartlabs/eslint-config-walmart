@@ -23,7 +23,7 @@
     "eslint-plugin-react": "5.1.1"
   },
 
-  "main": "configurations//es6.js",
+  "main": "configurations/es6.js",
   "scripts": {
     "test": "eslint configurations rules"
   },
