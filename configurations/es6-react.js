@@ -3,8 +3,8 @@
 module.exports = {
   "parser": "babel-eslint",
   "extends": [
-    "defaults/configurations/es6",
-    "defaults/rules/react/on"
+    "walmart/configurations/es6",
+    "walmart/rules/react/on"
   ],
   "parserOptions": {
     "ecmaFeatures": {

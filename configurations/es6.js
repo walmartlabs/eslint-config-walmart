@@ -2,8 +2,8 @@
 
 module.exports = {
   "extends": [
-    "defaults/configurations/es5",
-    "defaults/rules/eslint/es6/on"
+    "walmart/configurations/es5",
+    "walmart/rules/eslint/es6/on"
   ],
   "parser": "babel-eslint",
   "parserOptions": {

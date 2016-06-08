@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "extends": "defaults/configurations/es6-react",
+  "extends": "walmart/configurations/es6-react",
   "env": {
     "mocha": true,
     "phantomjs": true
