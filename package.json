@@ -17,9 +17,9 @@
   },
 
   "devDependencies" : {
-    "babel-eslint": "4.1.8",
+    "babel-eslint": "6.0.4",
     "eslint": "^2.0.0",
-    "eslint-plugin-filenames": "0.2.0",
+    "eslint-plugin-filenames": "1.0.0",
     "eslint-plugin-react": "5.1.1"
   },
 
