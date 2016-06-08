@@ -20,7 +20,7 @@ module.exports = {
     // Prevent direct mutation of this.state
     "react/no-direct-mutation-state": 0,
     // Prevent usage of isMounted
-    "no-is-mounted": 0,
+    "react/no-is-mounted": 0,
     // Prevent multiple component definition per file
     "react/no-multi-comp": 0,
     // Prevent usage of setState
