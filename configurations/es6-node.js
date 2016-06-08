@@ -2,7 +2,7 @@
 
 module.exports = {
   "extends": [
-    "defaults/configurations/configurations/es6",
+    "defaults/configurations/es6",
     "defaults/configurations/rules/eslint/node/on"
   ],
   "env": {
