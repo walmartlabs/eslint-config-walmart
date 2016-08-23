@@ -9,8 +9,7 @@
   },
   "repository": "git://github.com/walmartlabs/eslint-config-walmart.git",
   "private": false,
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "babel-eslint": "6.0.4",
     "eslint": "^2.0.0",
     "eslint-plugin-filenames": "1.0.0",
