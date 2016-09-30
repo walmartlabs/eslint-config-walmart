@@ -7,6 +7,7 @@ module.exports = {
     "phantomjs": true
   },
   "rules": {
-    "max-nested-callbacks": 0
+    "max-nested-callbacks": 0,
+    "no-magic-numbers": 0
   }
 };
