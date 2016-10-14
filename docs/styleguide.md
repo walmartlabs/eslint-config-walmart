@@ -8,6 +8,7 @@
 1. [Acknowledgements](#acknowledgements)
 1. [References](#references)
 1. [Objects](#objects)
+1. [Arrays](#arrays)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -305,6 +306,67 @@
   > Why?
   >
   > Mutating objects can lead to mistakes and tough to solve bugs. Object spread operator is more concise than `Object.assign`. Read more about using object rest to omit properties from an object in [this blog post](https://medium.com/@markbrouch/use-es2015-object-rest-operator-to-omit-properties-38a3ecffe90#.pi4y326ir).
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Arrays
+
+<a name="arrays--literals"></a><a name="4.1"></a>
+- [4.1](#arrays--literals) Use the literal syntax for array creation.
+
+  > eslint: [`no-array-constructor`](http://eslint.org/docs/rules/no-array-constructor)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const items = new Array();
+
+  // good
+  const items = [];
+  ```
+
+  > Why?
+  >
+  > Array literals are more concise.
+
+<a name="arrays--push"></a><a name="4.2"></a>
+- [4.2](#arrays--push) Use [Array.push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) instead of direct assignment to add items to an array.
+
+  ```js
+  const someStack = [];
+
+  // bad
+  someStack[someStack.length] = "abracadabra";
+
+  // good
+  someStack.push("abracadabra");
+  ```
+
+  > Why?
+  >
+  > `Array.push` is more concise.
+
+<a name="arrays-array-spreads"></a><a name="4.3"></a>
+- [4.3](#arrays-array-spreads) Use array spreads `...` to copy arrays.
+
+  ```js
+  // bad
+  const len = items.length;
+  const itemsCopy = [];
+  let i;
+
+  for (i = 0; i < len; i++) {
+    itemsCopy[i] = items[i];
+  }
+
+  // good
+  const itemsCopy = [...items];
+  ```
+
+  > Why?
+  >
+  > Array spreads is much more concise.
 
 **[⬆️ back to top](#table-of-contents)**
 
