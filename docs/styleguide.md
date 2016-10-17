@@ -10,6 +10,7 @@
 1. [Objects](#objects)
 1. [Arrays](#arrays)
 1. [Destructuring](#destructuring)
+1. [Strings](#strings)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -420,7 +421,7 @@
   > Destructuring is more concise.
 
 <a name="destructuring--object-over-array"></a><a name="5.3"></a>
-  - [5.3](#destructuring--object-over-array) Use object destructuring for multiple return values, not array destructuring.
+- [5.3](#destructuring--object-over-array) Use object destructuring for multiple return values, not array destructuring.
 
   ```js
   // bad
@@ -442,6 +443,60 @@
   > Why?
   >
   > You can add new properties over time or change the order of things without breaking call sites.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Strings
+
+<a name="strings--quotes"></a><a name="6.1"></a>
+- [6.1](#strings--quotes) Use double quotes `""` for strings.
+
+  > eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const name = 'Aaron Rodgers';
+
+  // bad - template literals should contain interpolation or newlines
+  const name = `Aaron Rodgers`;
+
+  // good
+  const name = "Aaron Rodgers";
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="strings--template-literals"></a><a name="6.2"></a>
+- [6.2](#strings--template-literals) When programmatically building up strings, use template strings instead of concatenation.
+
+  > eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  function sayHi(name) {
+    return "How are you, " + name + "?";
+  }
+
+  // bad
+  function sayHi(name) {
+    return ["How are you, ", name, "?"].join();
+  }
+
+  // good
+  function sayHi(name) {
+    return `How are you, ${name}?`;
+  }
+  ```
+
+  > Why?
+  >
+  > Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
 **[⬆️ back to top](#table-of-contents)**
 
