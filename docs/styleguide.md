@@ -13,6 +13,7 @@
 1. [Strings](#strings)
 1. [Functions](#functions)
 1. [Classes & Constructors](#classes--constructors)
+1. [Modules](#modules)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -761,6 +762,8 @@
   ));
   ```
 
+**[⬆️ back to top](#table-of-contents)**
+
 ## Classes & Constructors
 
 <a name="constructors--use-class"></a><a name="8.1"></a>
@@ -890,6 +893,85 @@
   > Why?
   >
   > Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Modules
+
+<a name="modules--use-them"></a><a name="9.1"></a>
+- [9.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system.
+
+  ```js
+  // bad
+  const SearchUtil = require('./SearchUtil');
+  module.exports = SearchUtil.fetch;
+
+  // ok
+  import SearchUtil from './SearchUtil';
+  export default SearchUtil.fetch;
+
+  // best
+  import { fetch } from './SearchUtil';
+  export default fetch;
+  ```
+
+  > Why?
+  >
+  > Module syntax is standard ES6.
+
+<a name="modules--no-wildcard"></a><a name="9.2"></a>
+- [9.2](#modules--no-wildcard) Do not use wildcard imports.
+
+  ```js
+  // bad
+  import * as SearchUtil from './SearchUtil';
+
+  // good
+  import SearchUtil from './SearchUtil';
+  ```
+
+  > Why?
+  >
+  > This makes sure you have a single default export.
+
+<a name="modules--no-export-from-import"></a><a name="9.3"></a>
+- [9.3](#modules--no-export-from-import) Do not export directly from an import.
+
+  ```js
+  // bad
+  // filename fetch.js
+  export { fetch as default } from './SearchUtil';
+
+  // good
+  // filename fetch.js
+  import { fetch } from './SearchUtil';
+  export default fetch;
+  ```
+
+  > Why?
+  >
+  > Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
+
+<a name="modules--multiline-imports-over-newlines"></a><a name="9.4"></a>
+- [9.4](#modules--multiline-imports-over-newlines) Multiline imports should be indented just like multiline array and object literals.
+
+  ```js
+  // bad
+  import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
+
+  // good
+  import {
+    longNameA,
+    longNameB,
+    longNameC,
+    longNameD,
+    longNameE,
+  } from 'path';
+  ```
+
+  > Why?
+  >
+  > The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
 
 **[⬆️ back to top](#table-of-contents)**
 
