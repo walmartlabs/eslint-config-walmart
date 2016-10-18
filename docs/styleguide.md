@@ -14,6 +14,7 @@
 1. [Functions](#functions)
 1. [Classes & Constructors](#classes--constructors)
 1. [Modules](#modules)
+1. [Iterators & Generators](#iterators--generators)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -972,6 +973,93 @@
   > Why?
   >
   > The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Iterators & Generators
+
+<a name="iterators--nope"></a><a name="10.1"></a>
+- [10.1](#iterators--nope) Don't use iterators. Prefer JavaScript's higher-order functions instead of loops like `for-in` or `for-of`.
+
+  > eslint: [`no-iterator`](http://eslint.org/docs/rules/no-iterator.html)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  const numbers = [1, 2, 3, 4, 5];
+
+  // bad
+  let sum = 0;
+  for (let num of numbers) {
+    sum += num;
+  }
+
+  sum === 15;
+
+  // good
+  let sum = 0;
+  numbers.forEach(num => sum += num);
+  sum === 15;
+
+  // best
+  const sum = numbers.reduce((total, num) => total + num, 0);
+  sum === 15;
+  ```
+
+  > Why?
+  >
+  > This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
+  > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
+
+<a name="generators--spacing"></a>
+- [10.2](#generators--spacing) Generators must have their function signature spaced properly.
+
+  > eslint: [`generator-star-spacing`](http://eslint.org/docs/rules/generator-star-spacing)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  function * foo() {
+  }
+
+  const bar = function * () {
+  }
+
+  const baz = function *() {
+  }
+
+  const quux = function*() {
+  }
+
+  function*foo() {
+  }
+
+  function *foo() {
+  }
+
+  // very bad
+  function
+  *
+  foo() {
+  }
+
+  const wat = function
+  *
+  () {
+  }
+
+  // good
+  function* foo() {
+  }
+
+  const foo = function* () {
+  }
+  ```
+
+  > Why?
+  >
+  > `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
 
 **[⬆️ back to top](#table-of-contents)**
 
