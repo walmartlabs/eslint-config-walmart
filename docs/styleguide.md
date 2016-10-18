@@ -313,6 +313,46 @@
   >
   > Mutating objects can lead to mistakes and tough to solve bugs. Object spread operator is more concise than `Object.assign`. Read more about using object rest to omit properties from an object in [this blog post](https://medium.com/@markbrouch/use-es2015-object-rest-operator-to-omit-properties-38a3ecffe90#.pi4y326ir).
 
+<a name="objects--properties-dot"></a><a name="3.8"></a>
+- [3.8](#objects--properties-dot) Use dot notation when accessing properties.
+
+  > eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  const luke = {
+    jedi: true,
+    age: 28,
+  };
+
+  // bad
+  const isJedi = luke['jedi'];
+
+  // good
+  const isJedi = luke.jedi;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="objects--properties-bracket"></a><a name="3.9"></a>
+- [3.9](#objects--properties-bracket) Use bracket notation `[]` when accessing properties with a variable.
+
+  ```js
+  const luke = {
+    jedi: true,
+    age: 28,
+  };
+
+  function getProp(prop) {
+    return luke[prop];
+  }
+
+  const isJedi = getProp('jedi');
+  ```
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Arrays
@@ -670,7 +710,7 @@
 
   > Why?
   >
-  > Walmart code style preference
+  > Walmart code style preference.
 
 <a name="functions--spread-vs-apply"></a><a name="7.8"></a>
 - [7.8](#functions--spread-vs-apply) Prefer the use of the spread operator `...` to call variadic functions.
