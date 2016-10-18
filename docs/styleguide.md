@@ -6,7 +6,7 @@
 
 1. [Types](#types)
 1. [Acknowledgements](#acknowledgements)
-1. [References](#references)
+1. [References & Variables](#references--variables)
 1. [Objects](#objects)
 1. [Arrays](#arrays)
 1. [Destructuring](#destructuring)
@@ -50,7 +50,8 @@
   ```
 **[⬆️ back to top](#table-of-contents)**
 
-## References
+## References & Variables
+
 <a name="references--one-var"></a><a name="2.1"></a>
 - [2.1](#references--one-var) Use only one variable declaration for each variable you wish to define.
   > eslint: [`one-var: never`](http://eslint.org/docs/rules/one-var)
@@ -116,8 +117,8 @@
   >
   > `let` is block-scoped rather than function-scoped like `var`.
 
-<a name="references--block-scope"></a><a name="2.3"></a>
-- [2.3](#references--block-scope) Note that both `let` and `const` are block-scoped.
+<a name="references--block-scope"></a><a name="2.4"></a>
+- [2.4](#references--block-scope) Note that both `let` and `const` are block-scoped.
 
   ```js
   // const and let only exist in the blocks they are defined in.
@@ -128,6 +129,154 @@
   console.log(a); // ReferenceError
   console.log(b); // ReferenceError
   ```
+
+<a name="variables--const"></a><a name="2.5"></a>
+- [2.5](#variables--const) Always use `const` to declare variables.
+
+  > eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef), [`prefer-const`](http://eslint.org/docs/rules/prefer-const)
+  >
+  > defined in: `rules/eslint/variables`, `rules/eslint/es6`
+
+  ```js
+  // bad
+  superPower = new SuperPower();
+
+  // good
+  const superPower = new SuperPower();
+  ```
+
+<a name="variables--one-const"></a><a name="2.6"></a>
+- [2.6](#variables--one-const) Use one `const` declaration per variable.
+
+  > eslint: [`one-var`](http://eslint.org/docs/rules/one-var.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const items = getItems(),
+      goSportsTeam = true,
+      dragonball = 'z';
+
+  // bad
+  // (compare to above, and try to spot the mistake)
+  const items = getItems(),
+      goSportsTeam = true;
+      dragonball = 'z';
+
+  // good
+  const items = getItems();
+  const goSportsTeam = true;
+  const dragonball = 'z';
+  ```
+
+  > Why?
+  >
+  > It's easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+
+<a name="variables--const-let-group"></a><a name="2.7"></a>
+- [2.7](#variables--const-let-group) Group all your `const`s and then group all your `let`s.
+
+  ```js
+  // bad
+  let i, len, dragonball,
+      items = getItems(),
+      goSportsTeam = true;
+
+  // bad
+  let i;
+  const items = getItems();
+  let dragonball;
+  const goSportsTeam = true;
+  let len;
+
+  // good
+  const goSportsTeam = true;
+  const items = getItems();
+  let dragonball;
+  let i;
+  let length;
+  ```
+
+  > Why?
+  >
+  > This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+
+<a name="variables--define-where-used"></a><a name="2.8"></a>
+- [2.8](#variables--define-where-used) Assign variables where you need them, but place them in a reasonable place.
+
+  ```js
+  // bad - unnecessary function call
+  function checkName(hasName) {
+    const name = getName();
+
+    if (hasName === 'test') {
+      return false;
+    }
+
+    if (name === 'test') {
+      this.setName('');
+      return false;
+    }
+
+    return name;
+  }
+
+  // good
+  function checkName(hasName) {
+    if (hasName === 'test') {
+      return false;
+    }
+
+    const name = getName();
+
+    if (name === 'test') {
+      this.setName('');
+      return false;
+    }
+
+    return name;
+  }
+  ```
+
+  > Why?
+  >
+  > `let` and `const` are block scoped and not function scoped.
+
+<a name="variables--no-chain-assignment"></a><a name="2.9"></a>
+- [2.9](#variables--no-chain-assignment) Don't chain variable assignments.
+
+  ```js
+  // bad
+  (function example() {
+    // JavaScript interprets this as
+    // let a = ( b = ( c = 1 ) );
+    // The let keyword only applies to variable a; variables b and c become
+    // global variables.
+    let a = b = c = 1;
+  }());
+
+  console.log(a); // undefined
+  console.log(b); // 1
+  console.log(c); // 1
+
+  // good
+  (function example() {
+    let a = 1;
+    let b = a;
+    let c = a;
+  }());
+
+  console.log(a); // undefined
+  console.log(b); // undefined
+  console.log(c); // undefined
+
+  // the same applies for `const`
+  ```
+
+  > Why?
+  >
+  > Chaining variable assignments creates implicit global variables.
 
 **[⬆️ back to top](#table-of-contents)**
 
