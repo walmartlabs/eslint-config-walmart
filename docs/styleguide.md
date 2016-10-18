@@ -11,6 +11,7 @@
 1. [Arrays](#arrays)
 1. [Destructuring](#destructuring)
 1. [Strings](#strings)
+1. [Functions](#functions)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -497,6 +498,203 @@
   > Why?
   >
   > Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Functions
+
+<a name="functions--declarations"></a><a name="7.1"></a>
+- [7.1](#functions--declarations) Use named function expressions instead of function declarations.
+
+  > eslint: [`func-style`](http://eslint.org/docs/rules/func-style)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function foo() {
+  }
+
+  // good
+  const foo = function () {
+  };
+  ```
+
+  > Why?
+  >
+  > Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file. This harms readability and maintainability. If you find that a function’s definition is large or complex enough that it is interfering with understanding the rest of the file, then perhaps it’s time to extract it to its own module!
+
+<a name="functions--in-blocks"></a><a name="7.2"></a>
+- [7.2](#functions--in-blocks) Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead.
+
+  > eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  for (var i = 0; i < 5; i++) {
+    (function() { return i; })();
+  }
+
+  // ok
+  var a = function() {};
+
+  for (var i = 0; i < 5; i++) {
+    a();
+  }
+
+  // best
+  for (let i = 0; i < 5; i++) {
+    (function() { return i; })();
+  }
+  ```
+
+  > Why?
+  >
+  > Using `let` to properly scope your variable to the block prevents hoisting errors. See [this blog post](https://medium.com/@markbrouch/why-you-shouldnt-use-var-anymore-f109a58b9b70) for more information.
+
+<a name="functions--arguments-shadow"></a><a name="7.3"></a>
+- [7.3](#functions--arguments-shadow) Never name a parameter `arguments`.
+
+  ```js
+  // bad
+  function nope(name, options, arguments) {
+    // ...stuff...
+  }
+
+  // good
+  function yup(name, options, args) {
+    // ...stuff...
+  }
+  ```
+
+  > Why?
+  >
+  > This will take precedence over the `arguments` object that is given to every function scope.
+
+<a name="functions--default-parameters"></a><a name="7.4"></a>
+- [7.4](#functions--default-parameters) Use default parameter syntax rather than mutating function arguments.
+
+  ```js
+  // really bad
+  function handleThings(opts) {
+    // No! We shouldn't mutate function arguments.
+    // Double bad: if opts is falsy it'll be set to an object which may
+    // be what you want but it can introduce subtle bugs.
+    opts = opts || {};
+    // ...
+  }
+
+  // still bad
+  function handleThings(opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+    // ...
+  }
+
+  // good
+  function handleThings(opts = {}) {
+    // ...
+  }
+  ```
+
+  > Why?
+  >
+  > Default parameters syntax ensures a default value is applied only if an argument is not passed.
+
+<a name="functions--defaults-last"></a><a name="7.5"></a>
+- [7.5](#functions--defaults-last) Always put default parameters last.
+
+  ```js
+  // bad
+  function handleThings(opts = {}, name) {
+    // ...
+  }
+
+  // good
+  function handleThings(name, opts = {}) {
+    // ...
+  }
+  ```
+
+  > Why?
+  >
+  > This prevents the necessity of passing `null` as an argument.
+
+<a name="functions--constructor"></a><a name="7.6"></a>
+- [7.6](#functions--constructor) Never use the Function constructor to create a new function.
+
+  > eslint: [`no-new-func`](http://eslint.org/docs/rules/no-new-func)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var add = new Function("a", "b", "return a + b");
+
+  // still bad
+  var subtract = Function("a", "b", "return a - b");
+
+  // good
+  var add = function(a, b) {
+    return a + b;
+  };
+  ```
+
+  > Why?
+  >
+  > Creating a function in this way evaluates a string similarly to `eval()`, which opens vulnerabilities.
+
+<a name="functions--signature-spacing"></a><a name="7.7"></a>
+- [7.7](#functions--signature-spacing) Spacing in a function signature.
+
+  > eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren), [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const f = function(){};
+  const g = function (){};
+  const h = function() {};
+
+  // good
+  const x = function () {};
+  const y = function a() {};
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference
+
+<a name="functions--spread-vs-apply"></a><a name="7.8"></a>
+- [7.8](#functions--spread-vs-apply) Prefer the use of the spread operator `...` to call variadic functions.
+
+  > eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  const x = [1, 2, 3, 4, 5];
+  console.log.apply(console, x);
+
+  // good
+  const x = [1, 2, 3, 4, 5];
+  console.log(...x);
+
+  // bad
+  new (Function.prototype.bind.apply(Date, [null, 2016, 08, 05]));
+
+  // good
+  new Date(...[2016, 08, 05]);
+  ```
+
+  > Why?
+  >
+  > It's cleaner, you don't need to supply a context, and you can not easily compose `new` with `apply`.
 
 **[⬆️ back to top](#table-of-contents)**
 
