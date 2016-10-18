@@ -12,6 +12,7 @@
 1. [Destructuring](#destructuring)
 1. [Strings](#strings)
 1. [Functions](#functions)
+1. [Classes & Constructors](#classes--constructors)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -759,6 +760,136 @@
     )
   ));
   ```
+
+## Classes & Constructors
+
+<a name="constructors--use-class"></a><a name="8.1"></a>
+- [8.1](#constructors--use-class) Always use `class`. Avoid manipulating `prototype` directly.
+
+  ```js
+  // bad
+  function Queue(contents = []) {
+    this.queue = [...contents];
+  }
+  Queue.prototype.pop = function () {
+    const value = this.queue[0];
+    this.queue.splice(0, 1);
+    return value;
+  };
+
+
+  // good
+  class Queue {
+    constructor(contents = []) {
+      this.queue = [...contents];
+    }
+    pop() {
+      const value = this.queue[0];
+      this.queue.splice(0, 1);
+      return value;
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > `class` syntax is more concise and easier to reason about.
+
+<a name="constructors--extends"></a><a name="8.2"></a>
+- [8.2](#constructors--extends) Use `extends` for inheritance.
+
+  ```js
+  // bad
+  const inherits = require('inherits');
+  function PeekableQueue(contents) {
+    Queue.apply(this, contents);
+  }
+  inherits(PeekableQueue, Queue);
+  PeekableQueue.prototype.peek = function () {
+    return this._queue[0];
+  }
+
+  // good
+  class PeekableQueue extends Queue {
+    peek() {
+      return this._queue[0];
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > It is a built-in way to inherit prototype functionality without breaking `instanceof`.
+
+<a name="constructors--chaining"></a><a name="8.3"></a>
+- [8.3](#constructors--chaining) Methods can return `this` to help with method chaining.
+
+  ```js
+  // bad
+  Jedi.prototype.jump = function () {
+    this.jumping = true;
+    return true;
+  };
+
+  Jedi.prototype.setHeight = function (height) {
+    this.height = height;
+  };
+
+  const luke = new Jedi();
+  luke.jump(); // => true
+  luke.setHeight(20); // => undefined
+
+  // good
+  class Jedi {
+    jump() {
+      this.jumping = true;
+      return this;
+    }
+
+    setHeight(height) {
+      this.height = height;
+      return this;
+    }
+  }
+
+  const luke = new Jedi();
+
+  luke.jump()
+    .setHeight(20);
+  ```
+
+  > Why?
+  >
+  > Method chaining allows for more concise code.
+
+<a name="classes--no-duplicate-members"></a><a name="8.4"></a>
+- [8.4](#classes--no-duplicate-members) Avoid duplicate class members.
+
+  > eslint: [`no-dupe-class-members`](http://eslint.org/docs/rules/no-dupe-class-members)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  class Foo {
+    bar() { return 1; }
+    bar() { return 2; }
+  }
+
+  // good
+  class Foo {
+    bar() { return 1; }
+  }
+
+  // good
+  class Foo {
+    bar() { return 2; }
+  }
+  ```
+
+  > Why?
+  >
+  > Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
 
 **[⬆️ back to top](#table-of-contents)**
 
