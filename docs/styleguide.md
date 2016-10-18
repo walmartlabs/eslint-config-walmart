@@ -696,6 +696,70 @@
   >
   > It's cleaner, you don't need to supply a context, and you can not easily compose `new` with `apply`.
 
+<a name="functions--arrows-use-them"></a><a name="7.9"></a>
+- [7.9](#functions--arrows-use-them) When you must use function expressions (as when passing an anonymous function), use arrow function notation.
+
+  > eslint: [`prefer-arrow-callback`](http://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](http://eslint.org/docs/rules/arrow-spacing.html)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  [1, 2, 3].map(function (x) {
+    const y = x + 1;
+    return x * y;
+  });
+
+  // good
+  [1, 2, 3].map((x) => {
+    const y = x + 1;
+    return x * y;
+  });
+  ```
+
+  > Why?
+  >
+  > It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
+
+<a name="functions--arrows-parens"></a><a name="7.10"></a>
+- [7.10](#functions--arrows-parens) If the function body consists of a single expression, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement.
+
+  > eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  [1, 2, 3].map(number => `A string containing the ${number}.`);
+
+  // good
+  [1, 2, 3].map((number) => `A string containing the ${number}.`);
+  ```
+
+  > Why?
+  >
+  > Forcing parens around arrow function parameters helps prevent accidental arrow syntax when a `<=` comparator was intended instead.
+
+<a name="functions--arrows-paren-wrap"></a><a name="7.11"></a>
+- [7.11](#functions--arrows-paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+
+  ```js
+  // bad
+  ['get', 'post', 'put'].map(httpMethod => Object.prototype.hasOwnProperty.call(
+      httpMagicObjectWithAVeryLongName,
+      httpMethod
+    )
+  );
+
+  // good
+  ['get', 'post', 'put'].map(httpMethod => (
+    Object.prototype.hasOwnProperty.call(
+      httpMagicObjectWithAVeryLongName,
+      httpMethod
+    )
+  ));
+  ```
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Acknowledgements
