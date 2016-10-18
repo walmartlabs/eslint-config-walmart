@@ -15,6 +15,7 @@
 1. [Classes & Constructors](#classes--constructors)
 1. [Modules](#modules)
 1. [Iterators & Generators](#iterators--generators)
+1. [Comparison Operators & Equality](#comparison-operators--equality)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -277,6 +278,56 @@
   > Why?
   >
   > Chaining variable assignments creates implicit global variables.
+
+<a name="variables--switch-blocks"></a><a name="2.10"></a>
+- [2.10](#variables--switch-blocks) Use braces to create blocks in `case` and `default` clauses that contain lexical declarations (e.g. `let`, `const`, `function`, and `class`).
+
+  > eslint: [`no-case-declarations`](http://eslint.org/docs/rules/no-case-declarations.html)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```javascript
+  // bad
+  switch (foo) {
+    case 1:
+      let x = 1;
+      break;
+    case 2:
+      const y = 2;
+      break;
+    case 3:
+      function f() {}
+      break;
+    default:
+      class C {}
+  }
+
+  // good
+  switch (foo) {
+    case 1: {
+      let x = 1;
+      break;
+    }
+    case 2: {
+      const y = 2;
+      break;
+    }
+    case 3: {
+      function f() {}
+      break;
+    }
+    case 4:
+      bar();
+      break;
+    default: {
+      class C {}
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -1249,6 +1300,117 @@
   > Why?
   >
   > `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Comparison Operators & Equality
+
+<a name="comparison--eqeqeq"></a><a name="11.1"></a>
+- [11.1](#comparison--eqeqeq) Use `===` and `!==` over `==` and `!=`.
+
+  > eslint: [`eqeqeq`](http://eslint.org/docs/rules/eqeqeq.html)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  if (a == b) {}
+  if (a != b) {}
+
+  // good
+  if (a === b) {}
+  if (a !== b) {}
+  ```
+
+  > Why?
+  >
+  > `==` and `!=` do type coercion which can cause difficult to spot bugs.
+
+<a name="comparison--if"></a><a name="11.2"></a>
+- [11.2](#comparison--if) Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+
+  + **Objects** evaluate to **true**
+  + **Undefined** evaluates to **false**
+  + **Null** evaluates to **false**
+  + **Booleans** evaluate to **the value of the boolean**
+  + **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
+  + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+
+  ```javascript
+  if ([0] && []) {
+    // true
+    // an array (even an empty one) is an object, objects will evaluate to true
+  }
+  ```
+
+<a name="comparison--shortcuts"></a><a name="11.3"></a>
+- [11.3](#comparison--shortcuts) Use shortcuts for booleans, but explicit comparisons for strings and numbers.
+
+  ```js
+  // bad
+  if (isValid === true) {
+    // ...stuff...
+  }
+
+  // good
+  if (isValid) {
+    // ...stuff...
+  }
+
+  // bad
+  if (name) {
+    // ...stuff...
+  }
+
+  // good
+  if (name !== '') {
+    // ...stuff...
+  }
+
+  // bad
+  if (collection.length) {
+    // ...stuff...
+  }
+
+  // good
+  if (collection.length > 0) {
+    // ...stuff...
+  }
+  ```
+
+  > Why?
+  >
+  > Explicit comparisons for non-boolean values are more semantic.
+
+<a name="comparison--nested-ternaries"></a><a name="11.4"></a>
+- [11.4](#comparison--nested-ternaries) Ternaries should not be nested and generally be single line expressions.
+
+  > eslint: [`no-nested-ternary`](http://eslint.org/docs/rules/no-nested-ternary.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const foo = maybe1 > maybe2
+    ? "bar"
+    : value1 > value2 ? "baz" : null;
+
+  // better
+  const maybeNull = value1 > value2 ? 'baz' : null;
+
+  const foo = maybe1 > maybe2
+    ? 'bar'
+    : maybeNull;
+
+  // best
+  const maybeNull = value1 > value2 ? 'baz' : null;
+
+  const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
+  ```
+
+  > Why?
+  >
+  > Nested ternaries can make code more difficult to read.
 
 **[⬆️ back to top](#table-of-contents)**
 
