@@ -5,7 +5,6 @@
 ## Table of Contents
 
 1. [Types](#types)
-1. [Acknowledgements](#acknowledgements)
 1. [References & Variables](#references--variables)
 1. [Objects](#objects)
 1. [Arrays](#arrays)
@@ -16,6 +15,8 @@
 1. [Modules](#modules)
 1. [Iterators & Generators](#iterators--generators)
 1. [Comparison Operators & Equality](#comparison-operators--equality)
+1. [Blocks](#blocks)
+1. [Acknowledgements](#acknowledgements)
 
 ## Types
 <a name="types--primitives"></a><a name="1.1"></a>
@@ -1411,6 +1412,58 @@
   > Why?
   >
   > Nested ternaries can make code more difficult to read.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Blocks
+
+<a name="blocks--braces"></a><a name="12.1"></a>
+- [12.1](#blocks--braces) Use braces with all single- and multi-line blocks.
+
+  ```javascript
+  // bad
+  if (test)
+    return false;
+
+  // good
+  if (test) {
+    return false;
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="blocks--cuddled-elses"></a><a name="12.2"></a>
+- [12.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your `if` block's closing brace.
+
+  > eslint: [`brace-style`](http://eslint.org/docs/rules/brace-style.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  if (test) {
+    thing1();
+    thing2();
+  }
+  else {
+    thing3();
+  }
+
+  // good
+  if (test) {
+    thing1();
+    thing2();
+  } else {
+    thing3();
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 **[⬆️ back to top](#table-of-contents)**
 
