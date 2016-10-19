@@ -17,6 +17,7 @@
 1. [Comparison Operators & Equality](#comparison-operators--equality)
 1. [Blocks & Whitespace](#blocks--whitespace)
 1. [Comments](#comments)
+1. [Commas & Semicolons](#commas--semicolons)
 1. [Acknowledgements](#acknowledgements)
 
 ## Types
@@ -1839,6 +1840,109 @@
     }
   }
   ```
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Commas & Semicolons
+
+<a name="commas--leading-trailing"></a><a name="14.1"></a>
+- [14.1](#commas--leading-trailing) Leading commas: **Nope.**
+
+  > eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const story = [
+      once
+    , upon
+    , aTime
+  ];
+
+  // good
+  const story = [
+    once,
+    upon,
+    aTime,
+  ];
+
+  // bad
+  const hero = {
+      firstName: 'Ada'
+    , lastName: 'Lovelace'
+    , birthYear: 1815
+    , superPower: 'computers'
+  };
+
+  // good
+  const hero = {
+    firstName: 'Ada',
+    lastName: 'Lovelace',
+    birthYear: 1815,
+    superPower: 'computers',
+  };
+  ```
+
+<a name="commas--dangling"></a><a name="14.2"></a>
+- [14.2](#commas--dangling) Additional trailing comma: **Nope.**
+
+  > eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  const hero = {
+    firstName: 'Dana',
+    lastName: 'Scully',
+  };
+
+  const heroes = [
+    'Batman',
+    'Superman',
+  ];
+
+  // good
+  const hero = {
+    firstName: 'Dana',
+    lastName: 'Scully'
+  };
+
+  const heroes = [
+    'Batman',
+    'Superman'
+  ];
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="semicolons--required"></a><a name="24.3"></a>
+- [24.3](#semicolons--required) **Yup.**
+
+  > eslint: [`semi`](http://eslint.org/docs/rules/semi.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  (function () {
+    const name = 'Skywalker'
+    return name
+  })()
+
+  // good
+  (function () {
+    const name = 'Skywalker';
+    return name;
+  }());
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 **[⬆️ back to top](#table-of-contents)**
 
