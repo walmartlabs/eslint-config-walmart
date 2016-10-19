@@ -15,7 +15,7 @@
 1. [Modules](#modules)
 1. [Iterators & Generators](#iterators--generators)
 1. [Comparison Operators & Equality](#comparison-operators--equality)
-1. [Blocks](#blocks)
+1. [Blocks & Whitespace](#blocks--whitespace)
 1. [Comments](#comments)
 1. [Acknowledgements](#acknowledgements)
 
@@ -1416,7 +1416,7 @@
 
 **[⬆️ back to top](#table-of-contents)**
 
-## Blocks
+## Blocks & Whitespace
 
 <a name="blocks--braces"></a><a name="12.1"></a>
 - [12.1](#blocks--braces) Use braces with all single- and multi-line blocks.
@@ -1465,6 +1465,285 @@
   > Why?
   >
   > Walmart code style preference.
+
+<a name="whitespace--spaces"></a><a name="12.3"></a>
+- [12.3](#whitespace--spaces) Use soft tabs set to 2 spaces.
+
+  > eslint: [`indent`](http://eslint.org/docs/rules/indent.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function foo() {
+  ∙∙∙∙const name;
+  }
+
+  // bad
+  function bar() {
+  ∙const name;
+  }
+
+  // good
+  function baz() {
+  ∙∙const name;
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--before-blocks"></a><a name="12.4"></a>
+- [12.4](#whitespace--before-blocks) Place 1 space before the leading brace.
+
+  > eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function test(){
+    console.log('test');
+  }
+
+  // good
+  function test() {
+    console.log('test');
+  }
+
+  // bad
+  dog.set('attr',{
+    age: '1 year',
+    breed: 'Bernese Mountain Dog',
+  });
+
+  // good
+  dog.set('attr', {
+    age: '1 year',
+    breed: 'Bernese Mountain Dog',
+  });
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--around-keywords"></a><a name="12.5"></a>
+- [12.5](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations.
+
+  > eslint: [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  if(isJedi) {
+    fight ();
+  }
+
+  // good
+  if (isJedi) {
+    fight();
+  }
+
+  // bad
+  function fight () {
+    console.log ('Swooosh!');
+  }
+
+  // good
+  function fight() {
+    console.log('Swooosh!');
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--infix-ops"></a><a name="12.6"></a>
+- [12.6](#whitespace--infix-ops) Set off operators with spaces.
+
+  > eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```javascript
+  // bad
+  const x=y+5;
+
+  // good
+  const x = y + 5;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--newline-at-end"></a><a name="12.7"></a>
+- [12.7](#whitespace--newline-at-end) End files with a single newline character.
+
+  > eslint: [`eol-last`](http://eslint.org/docs/rules/eol-last)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  (function (global) {
+    // ...stuff...
+  })(this);
+  ```
+
+  ```javascript
+  // bad
+  (function (global) {
+    // ...stuff...
+  })(this);↵
+  ↵
+  ```
+
+  ```javascript
+  // good
+  (function (global) {
+    // ...stuff...
+  })(this);↵
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--after-blocks"></a><a name="12.8"></a>
+- [12.8](#whitespace--after-blocks) Leave a blank line after blocks and before the next statement.
+
+  ```js
+  // bad
+  if (foo) {
+    return bar;
+  }
+  return baz;
+
+  // good
+  if (foo) {
+    return bar;
+  }
+
+  return baz;
+
+  // bad
+  const obj = {
+    foo() {
+    },
+    bar() {
+    },
+  };
+  return obj;
+
+  // good
+  const obj = {
+    foo() {
+    },
+
+    bar() {
+    },
+  };
+
+  return obj;
+
+  // bad
+  const arr = [
+    function foo() {
+    },
+    function bar() {
+    },
+  ];
+  return arr;
+
+  // good
+  const arr = [
+    function foo() {
+    },
+
+    function bar() {
+    },
+  ];
+
+  return arr;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--in-parens"></a><a name="12.9"></a>
+- [12.9](#whitespace--in-parens) Do not add spaces inside parentheses.
+
+  > eslint: [`space-in-parens`](http://eslint.org/docs/rules/space-in-parens.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function bar( foo ) {
+    return foo;
+  }
+
+  // good
+  function bar(foo) {
+    return foo;
+  }
+
+  // bad
+  if ( foo ) {
+    console.log(foo);
+  }
+
+  // good
+  if (foo) {
+    console.log(foo);
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--max-len"></a><a name="12.10"></a>
+- [12.10](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: URLs are exempt from this rule.
+
+  > eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
+
+  // bad
+  $.ajax({ method: "POST", url: "https://walmart.com/", data: { name: "John" } }).done(() => console.log("Congratulations!")).fail(() => console.log("Error."));
+
+  // good
+  const foo = jsonData
+    && jsonData.foo
+    && jsonData.foo.bar
+    && jsonData.foo.bar.baz
+    && jsonData.foo.bar.baz.quux
+    && jsonData.foo.bar.baz.quux.xyzzy;
+
+  // good
+  $.ajax({
+    method: "POST",
+    url: "https://walmart.com/",
+    data: { name: "John" },
+  })
+    .done(() => console.log("Congratulations!"))
+    .fail(() => console.log("Error."));
+  ```
+
+  > Why?
+  >
+  > This ensures readability and maintainability.
 
 **[⬆️ back to top](#table-of-contents)**
 
