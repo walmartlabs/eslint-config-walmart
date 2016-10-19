@@ -1919,8 +1919,8 @@
   >
   > Walmart code style preference.
 
-<a name="semicolons--required"></a><a name="24.3"></a>
-- [24.3](#semicolons--required) **Yup.**
+<a name="semicolons--required"></a><a name="14.3"></a>
+- [14.3](#semicolons--required) **Yup.**
 
   > eslint: [`semi`](http://eslint.org/docs/rules/semi.html)
   >
