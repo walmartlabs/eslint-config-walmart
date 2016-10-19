@@ -2058,6 +2058,21 @@
   export default SearchConfig;
   ```
 
+<a name="accessors--boolean-prefix"></a><a name="15.6"></a>
+- [15.6](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
+
+  ```js
+  // bad
+  if (!dragon.age()) {
+    return false;
+  }
+
+  // good
+  if (!dragon.hasAge()) {
+    return false;
+  }
+  ```
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Acknowledgements
