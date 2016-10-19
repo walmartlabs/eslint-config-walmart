@@ -18,6 +18,7 @@
 1. [Blocks & Whitespace](#blocks--whitespace)
 1. [Comments](#comments)
 1. [Commas & Semicolons](#commas--semicolons)
+1. [Naming Conventions](#naming-conventions)
 1. [Acknowledgements](#acknowledgements)
 
 ## Types
@@ -1943,6 +1944,119 @@
   > Why?
   >
   > Walmart code style preference.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Naming Conventions
+
+<a name="naming--camelCase"></a><a name="15.1"></a>
+- [15.1](#naming--camelCase) Use camelCase when naming objects, functions, and instances.
+
+  > eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  const OBJEcttsssss = {};
+  const this_is_my_object = {};
+  function c() {}
+
+  // good
+  const thisIsMyObject = {};
+  function thisIsMyFunction() {}
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="naming--PascalCase"></a><a name="15.2"></a>
+- [15.2](#naming--PascalCase) Use PascalCase only when naming constructors or classes.
+
+  > eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function user(options) {
+    this.name = options.name;
+  }
+
+  const bad = new user({
+    name: 'nope',
+  });
+
+  // good
+  class User {
+    constructor(options) {
+      this.name = options.name;
+    }
+  }
+
+  const good = new User({
+    name: 'yup',
+  });
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="naming--self-this"></a><a name="15.3"></a>
+- [15.3](#naming--self-this) Don't save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+  ```js
+  // bad
+  function foo() {
+    const self = this;
+    return function () {
+      console.log(self);
+    };
+  }
+
+  // bad
+  function foo() {
+    const that = this;
+    return function () {
+      console.log(that);
+    };
+  }
+
+  // good
+  function foo() {
+    return () => {
+      console.log(this);
+    };
+  }
+  ```
+
+  > Why?
+  >
+  > Use of arrow functions or `bind` is more semantic and does not require declaring a new reference.
+
+<a name="naming--camelCase-default-export"></a><a name="15.4"></a>
+- [15.4](#naming--camelCase-default-export) Use camelCase when you export-default a function.
+
+  ```js
+  function buildSearchQuery() {
+  }
+
+  export default buildSearchQuery;
+  ```
+
+<a name="naming--PascalCase-singleton"></a><a name="15.5"></a>
+- [15.5](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
+
+  ```js
+  const SearchConfig = {
+    filter: {
+    }
+  };
+
+  export default SearchConfig;
+  ```
 
 **[⬆️ back to top](#table-of-contents)**
 
