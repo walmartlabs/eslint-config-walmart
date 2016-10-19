@@ -16,6 +16,7 @@
 1. [Iterators & Generators](#iterators--generators)
 1. [Comparison Operators & Equality](#comparison-operators--equality)
 1. [Blocks](#blocks)
+1. [Comments](#comments)
 1. [Acknowledgements](#acknowledgements)
 
 ## Types
@@ -1464,6 +1465,101 @@
   > Why?
   >
   > Walmart code style preference.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Comments
+
+<a name="comments--multiline"></a><a name="13.1"></a>
+- [13.1](#comments--multiline) Use `/** ... */` for multi-line comments.
+
+  ```js
+  // bad
+  // make() returns a new element
+  // based on the passed in tag name
+  //
+  // @param {String} tag
+  // @return {Element} element
+  function make(tag) {
+
+    // ...stuff...
+
+    return element;
+  }
+
+  // good
+  /**
+    * make() returns a new element
+    * based on the passed-in tag name
+    */
+  function make(tag) {
+
+    // ...stuff...
+
+    return element;
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="comments--singleline"></a><a name="13.2"></a>
+- [13.2](#comments--singleline) Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it's on the first line of a block.
+
+  ```javascript
+  // bad
+  const active = true;  // is current tab
+
+  // good
+  // is current tab
+  const active = true;
+
+  // bad
+  function getType() {
+    console.log('fetching type...');
+    // set the default type to 'no type'
+    const type = this._type || 'no type';
+
+    return type;
+  }
+
+  // good
+  function getType() {
+    console.log('fetching type...');
+
+    // set the default type to 'no type'
+    const type = this._type || 'no type';
+
+    return type;
+  }
+
+  // also good
+  function getType() {
+    // set the default type to 'no type'
+    const type = this._type || 'no type';
+
+    return type;
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="comments--todo"></a><a name="13.3"></a>
+- [13.3](#comments--todo) Use `// TODO:` to annotate solutions to problems.
+
+  ```js
+  class Calculator extends Abacus {
+    constructor() {
+      super();
+
+      // TODO: total should be configurable by an options param
+      this.total = 0;
+    }
+  }
+  ```
 
 **[⬆️ back to top](#table-of-contents)**
 
