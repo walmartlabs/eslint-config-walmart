@@ -1920,7 +1920,7 @@
   > Walmart code style preference.
 
 <a name="semicolons--required"></a><a name="14.3"></a>
-- [14.3](#semicolons--required) **Yup.**
+- [14.3](#semicolons--required) Semicolons required: **Yup.**
 
   > eslint: [`semi`](http://eslint.org/docs/rules/semi.html)
   >
