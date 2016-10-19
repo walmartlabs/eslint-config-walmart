@@ -2046,6 +2046,10 @@
   export default buildSearchQuery;
   ```
 
+  > Why?
+  >
+  > Walmart code style preference.
+
 <a name="naming--PascalCase-singleton"></a><a name="15.5"></a>
 - [15.5](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
 
@@ -2057,6 +2061,10 @@
 
   export default SearchConfig;
   ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 <a name="accessors--boolean-prefix"></a><a name="15.6"></a>
 - [15.6](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
@@ -2072,6 +2080,10 @@
     return false;
   }
   ```
+
+  > Why?
+  >
+  > Accessor names should be descriptive of their action.
 
 **[⬆️ back to top](#table-of-contents)**
 
