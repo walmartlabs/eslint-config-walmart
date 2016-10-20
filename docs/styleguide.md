@@ -19,6 +19,7 @@
 1. [Comments](#comments)
 1. [Commas & Semicolons](#commas--semicolons)
 1. [Naming Conventions](#naming-conventions)
+1. [Forbidden Features](#forbidden-features)
 1. [Acknowledgements](#acknowledgements)
 
 ## Types
@@ -39,8 +40,8 @@
   console.log(foo, bar); // => 1, 9
   ```
 
-<a name="types-complex"></a><a name="1.2"></a>
-- [1.2](#types-complex) **Complex**: When you access a complex type you work on a reference to its value.
+<a name="types--complex"></a><a name="1.2"></a>
+- [1.2](#types--complex) **Complex**: When you access a complex type you work on a reference to its value.
   + `object`
   + `array`
   + `function`
@@ -53,6 +54,50 @@
 
   console.log(foo[0], bar[0]); // => 9, 9
   ```
+
+<a name="types--no-new-wrappers"></a><a name="1.3"></a>
+- [1.3](#types--no-new-wrappers) Do not create primitive types using their constructors.
+
+  > eslint: [`no-new-wrappers`](http://eslint.org/docs/rules/no-new-wrappers)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var booleanObject = new Boolean(false);
+  var numberObject = new Number(1);
+  var stringObject = new String("string");
+
+  // good
+  var boolean = false;
+  var number = 1;
+  var string = "string";
+  ```
+
+  > Why?
+  >
+  > Wrapping primitives in their constructor creates an object, which can have unintended side effects when making comparisons.
+
+<a name="types--no-octal"></a><a name="1.4"></a>
+- [1.4](#types--no-octal) Do not use octals or octal escapes.
+
+  > eslint: [`no-octal`](http://eslint.org/docs/rules/no-octal), [`no-octal-escape`](http://eslint.org/docs/rules/no-octal-escape)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var octal = 058;
+  var escapedOctal = "\058";
+
+  // good
+  var escapedHexadecimal = "\xA9";
+  ```
+
+  > Why?
+  >
+  > Octal is deprecated in ES5.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## References & Variables
@@ -333,6 +378,86 @@
   >
   > Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
 
+<a name="variables--no-magic-numbers"></a><a name="2.11"></a>
+- [2.11](#variables--no-magic-numbers) Do not use magic numbers, except for `-1`, `0`, and `1`.
+
+  > eslint: [`no-magic-numbers`](http://eslint.org/docs/rules/no-magic-numbers)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  function getTotal(price) {
+    return price * 1.12;
+  }
+
+  // good
+  function getTotal(price) {
+    const taxRate = 1.12;
+    return price * taxRate;
+  }
+  ```
+
+  > Why?
+  >
+  > Numbers should be assigned to constants to improve code readability and ease of refactoring. Magic numbers are allowed, however, in unit tests.
+
+<a name="variables--no-native-reassign"></a><a name="2.12"></a>
+- [2.12](#variables--no-native-reassign) Do not reassign native variables.
+
+  > eslint: [`no-native-reassign`](http://eslint.org/docs/rules/no-native-reassign)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  window = {};
+  undefined = 1;
+  ```
+
+  > Why?
+  >
+  > There are several variables like `window` that are defined by the environment and should not be changed.
+
+<a name="variables--no-redeclare"></a><a name="2.13"></a>
+- [2.13](#variables--no-redeclare) Do not declare the same variable more than once in the same scope.
+
+  > eslint: [`no-redeclare`](http://eslint.org/docs/rules/no-redeclare)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var a = 3;
+  var a = 10;
+
+  // good
+  var a = 3;
+  a = 10;
+  ```
+
+  > Why?
+  >
+  > Multiple declarations of the same variable can lead to confusion.
+
+<a name="variables--unused-expressions"></a><a name="2.14"></a>
+- [2.14](#variables--unused-expresions) Do not leave expressions unused.
+
+  > eslint: [`no-unused-expressions`]
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  n + 1;
+  0;
+  "string";
+  ```
+
+  > Why?
+  >
+  > Unused expressions have no effect on the program.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Objects
@@ -557,6 +682,45 @@
   const isJedi = getProp('jedi');
   ```
 
+<a name="objects--no-extend-native"></a><a name="3.10"></a>
+- [3.10](#objects--no-extend-native) Do not extend native objects.
+
+  > eslint: [`no-extend-native`](http://eslint.org/docs/rules/no-extend-native)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  Object.prototype.a = "a";
+
+  // good
+  var CustomObject = new Object();
+  CustomObject.prototype.a = "a";
+  ```
+
+  > Why?
+  >
+  > Extending native or "built-in" features of the language can conflict with expectations of how these features work. If you need custom functionality, create a new instance of the feature first.
+
+<a name="objects--no-proto"></a><a name="3.11"></a>
+- [3.11](#objects--no-proto) Do not use `__proto__`.
+
+  > eslint: [`no-proto`](http://eslint.org/docs/rules/no-proto)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var proto = obj.__proto__;
+
+  // good
+  var proto = Object.getPrototypeOf(obj);
+  ```
+
+  > Why?
+  >
+  > `__proto__` is deprecated in ES3.1.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Arrays
@@ -692,6 +856,26 @@
   >
   > You can add new properties over time or change the order of things without breaking call sites.
 
+<a name="destructuring--no-empty-pattern"></a><a name="5.4"></a>
+- [5.4](#destructuring--no-empty-pattern) Do not use an empty pattern in a destructuring command.
+
+  > eslint: [`no-empty-pattern`](http://eslint.org/docs/rules/no-empty-pattern)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var {} = foo;
+  var {a: {}} = foo;
+
+  // good
+  var {a = {}} = foo;
+  ```
+
+  > Why?
+  >
+  > Empty destructuring patterns do not create a variable and may be a typo on a default value assignment.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Strings
@@ -721,11 +905,14 @@
 <a name="strings--template-literals"></a><a name="6.2"></a>
 - [6.2](#strings--template-literals) When programmatically building up strings, use template strings instead of concatenation.
 
-  > eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html)
+  > eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html), [`no-useless-concat`](http://eslint.org/docs/rules/no-useless-concat)
   >
-  > defined in: `rules/eslint/es6`
+  > defined in: `rules/eslint/es6`, `rules/eslint/best-practices`
 
   ```js
+  // bad
+  var str = "a" + "b";
+
   // bad
   function sayHi(name) {
     return "How are you, " + name + "?";
@@ -745,6 +932,31 @@
   > Why?
   >
   > Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+
+<a name="strings--multiline"></a><a name="6.3"></a>
+- [6.3](#string--multiline) Do not use multiline strings.
+
+  > eslint: [`no-multi-str`](http://eslint.org/docs/rules/no-multi-str)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var str = "Multi \
+            Line";
+
+  // good
+  var str = "Multi\n" +
+            "Line";
+
+  // best
+  var str = `Multi
+            Line`;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -1007,6 +1219,149 @@
   ));
   ```
 
+  > Why?
+  >
+  > It is easier to see where a multi-line function starts and ends when wrapped this way.
+
+<a name="functions--complexity"></a><a name="7.12"></a>
+- [7.12](#functions--complexity) Keep functions simple by limiting branching to 11 paths.
+
+  > eslint: [`complexity`](http://eslint.org/docs/rules/complexity)
+  >
+  > defined in `rules/eslint/best-practices`
+
+  ```js
+  function getFlagType(name) {
+    if (name === BEST_SELLER) {
+      return bestSeller;  // 1st path
+    } else if (name === CLEARANCE) {
+      return clearance; // 2nd path
+    } else if (name === OUT_OF_STOCK) {
+      return outOfStock;  // 3rd path
+    }
+  }
+  // do not exceed 11 paths
+  ```
+
+  > Why?
+  >
+  > Too many paths can be tough to wrangle. Consider refactoring.
+
+<a name="functions--consistent-return"></a><a name="7.13"></a>
+- [7.13](#functions--consistent-return) Make sure a function either never returns a value or always returns a value.
+
+  > eslint: [`consistent-return`](http://eslint.org/docs/rules/consistent-return)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  function(test) {
+    if (test === true) {
+      return true;
+    }
+  }
+
+  // good
+  function(test) {
+    if (test === true) {
+      return true;
+    }
+    return false;
+  }
+  ```
+
+  > Why?
+  >
+  > If some but not all branches of a function have an explicit return value, this may be a sign of a typo.
+
+<a name="functions--no-extra-bind"></a><a name="7.14"></a>
+- [7.14](#functions--no-extra-bind) Do not use `bind()` unnecessarily.
+
+  > eslint: [`no-extra-bind`](http://eslint.org/docs/rules/no-extra-bind)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var boundGetName = (function getName() {
+    return "name";
+  }).bind({ name: "name" });
+
+  // good
+  var boundGetName = (function getName() {
+    return this.name;
+  }).bind({ name: "name" });
+  ```
+
+  > Why?
+  >
+  > Functions that do not make reference to `this` do not benefit from binding `this` context.
+
+<a name="functions--no-useless-call"></a><a name="7.15"></a>
+- [7.15](#functions--no-useless-call) Do not use `call()` or `apply()` unnecessarily.
+
+  > eslint: [`no-useless-call`](http://eslint.org/docs/rules/no-useless-call)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  foo.call(undefined, 1, 2, 3);
+  foo.apply(undefined, [1, 2, 3]);
+
+  // good
+  foo.call(obj, 1, 2, 3);
+  foo.apply(obj, [1, 2, 3]);
+  ```
+
+  > Why?
+  >
+  > `call()` and `apply()` are slower than normal function invocation and should not be used when a regular function would suffice.
+
+<a name="functions--no-return-assign"></a><a name="7.16"></a>
+- [7.16](#functions--no-return-assign) Do not make assignments in a return statement.
+
+  > eslint: [`no-return-assign`](http://eslint.org/docs/rules/no-return-assign)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  function doSomething() {
+    return foo = bar + 2;
+  }
+
+  // good
+  function doSomething() {
+    foo = bar + 2;
+    return foo;
+  }
+  ```
+
+  > Why?
+  >
+  > It can be confusing to understand if an equality check `===` was intended instead of an assignment when used in a return statement.
+
+<a name="functions--throw"></a><a name="7.17"></a>
+- [7.17](#functions--throw) Only throw `Error` objects.
+
+  > eslint: [`no-throw-literal`](http://eslint.org/docs/rules/no-throw-literal)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  throw "error";
+
+  // good
+  throw new Error();
+  ```
+
+  > Why?
+  >
+  > `Error` objects contain extra metadata about how they were thrown.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Classes & Constructors
@@ -1138,6 +1493,29 @@
   > Why?
   >
   > Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
+
+<a name="classes--no-invalid-this"></a><a name="8.5"></a>
+- [8.5](#classes-no-invalid-this) Do not allow `this` outside of classes and class-like objects.
+
+  > eslint: [`no-invalid-this`](http://eslint.org/docs/rules/no-invalid-this)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  var justARegularFunction = function() {
+    this.a = "a"
+  };
+
+  // good
+  var ThisIsAClass = function() {
+    this.a = "a"
+  };
+  ```
+
+  > Why?
+  >
+  > `this` could be undefined if referenced outside of an object or class.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -1416,6 +1794,43 @@
   >
   > Nested ternaries can make code more difficult to read.
 
+<a name="comparison--no-self-compare"></a><a name="11.5"></a>
+- [11.5](#comparison--no-self-compare) Do not compare a variable to itself.
+
+  > eslint: [`no-self-compare`](http://eslint.org/docs/rules/no-self-compare)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  if (x === x) {
+    doSomething();
+  }
+  ```
+
+  > Why?
+  >
+  > This is usually a sign of a typo when refactoring.
+
+<a name="comparison--yoda"></a><a name="11.6"></a>
+- [11.6](#comparison--yoda) Do not use Yoda conditions.
+
+  > eslint: [`yoda`](http://eslint.org/docs/rules/yoda)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  if ("red" === color)
+
+  // good
+  if (color === red)
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Blocks & Whitespace
@@ -1423,10 +1838,13 @@
 <a name="blocks--braces"></a><a name="12.1"></a>
 - [12.1](#blocks--braces) Use braces with all single- and multi-line blocks.
 
-  ```javascript
+  > eslint: [`curly`](http://eslint.org/docs/rules/curly)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
   // bad
-  if (test)
-    return false;
+  if (test) return false;
 
   // good
   if (test) {
@@ -1746,6 +2164,123 @@
   > Why?
   >
   > This ensures readability and maintainability.
+
+<a name="blocks--no-fallthrough"></a><a name="12.11"></a>
+- [12.11](#blocks--no-fallthrough) Do not allow switch statements to "fall through".
+
+  > eslint: [`no-fallthrough`](http://eslint.org/docs/rules/no-fallthrough)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  switch (action) {
+    case POST:
+      doSomething();
+    case GET:
+      doSomething();
+  }
+
+  // good
+  switch (action) {
+    case POST:
+      doSomething();
+      break;
+    case GET:
+      doSomething
+      break;
+  }
+  ```
+
+  > Why?
+  >
+  > Unintentional fallthroughs can cause unintended behavior. If a fallthrough is intentional, use the comment `// falls through` to indicate it is done purposefully.
+
+<a name="blocks--no-labels"></a><a name="12.12"></a>
+- [12.12](#blocks--no-labels) Do not use labels except with loops or switch statements.
+
+  > eslint: [`no-labels`](http://eslint.org/docs/rules/no-labels)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  customBlock: {
+    console.log("log this");
+    break customBlock;
+    console.log("but not this");
+  }
+  console.log("and then log this");
+
+  // good
+  loopLabel:
+    while (true) {
+      break loopLabel;
+    }
+  ```
+
+  > Why?
+  >
+  > Labels outside of switch statements and loops are not well-known and can be confusing to understand.
+
+<a name="blocks--no-lone"></a><a name="12.13"></a>
+- [12.13](#blocks--no-lone) Don't use unnecessary blocks.
+
+  > eslint: [`no-lone-blocks`](http://eslint.org/docs/rules/no-lone-blocks)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  if (foo) {
+    bar();
+    {
+      baz();
+    }
+  }
+
+  // good
+  if (foo) {
+    bar();
+    baz();
+  }
+
+  // also ok
+  if (foo) {
+    bar();
+    {
+      let i = 1;
+      baz(i);
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > In ES5, blocks do not create new scope. In ES6, they are only useful when scoping `const` or `let`.
+
+<a name="whitespace--no-multi"></a><a name="12.14"></a>
+- [12.14](#whitespace--no-multi) Don't use multiple spaces in a row.
+
+  > eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  if (a  === b) {
+    doSomething();
+  }
+
+  // good
+  if (a === b) {
+    doSomething();
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -2084,6 +2619,105 @@
   > Why?
   >
   > Accessor names should be descriptive of their action.
+
+**[⬆️ back to top](#table-of-contents)**
+
+## Forbidden Features
+
+<a name="forbidden--no-alert"></a><a name="16.1"></a>
+- [16.1](#forbidden--no-alert) Do not use `alert`.
+
+  > eslint: [`no-alert`](http://eslint.org/docs/rules/no-alert)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  alert("test");
+
+  confirm("Is this working?");
+
+  prompt("Why not?", "Because.");
+  ```
+
+  > Why?
+  >
+  > Alerts are bad UI and should not be used.
+
+<a name="forbidden--no-caller"></a><a name="16.2"></a>
+- [16.2](#forbidden--no-caller) Do not use `arguments.caller` or `arguments.callee`.
+
+  > eslint: [`no-caller`](http://eslint.org/docs/rules/no-caller)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  function foo(n) {
+    arguments.callee(n - 1);
+  }
+  ```
+
+  > Why?
+  >
+  > These are deprecated features of the language and do not work in ES5 stict mode.
+
+<a name="forbidden--no-eval"></a><a name="16.3"></a>
+- [16.3](#forbidden--no-eval) Do not use `eval()`.
+
+  > eslint: [`no-eval`](http://eslint.org/docs/rules/no-eval), [`no-implied-eval`](http://eslint.org/docs/rules/no-implied-eval), [`no-script-url`](http://eslint.org/docs/rules/no-script-url)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  eval("var a = 0");
+  location.href = "javascript:void(0)";
+  ```
+
+  > Why?
+  >
+  > The use of `eval()` is dangerous and can open your application up to security vulnerabilities.
+
+<a name="forbidden--no-sequences"></a><a name="16.4"></a>
+- [16.4](#forbidden--no-sequences) Do not use sequences outside of `for` loops or without explicitly wrapping in parentheses.
+
+  > eslint: [`no-sequences`](http://eslint.org/docs/rules/no-sequences)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  if (doSomething(), !!test)
+
+  // good
+  for (var i = 0, j = 10; i < j; i++, j--)
+  ```
+
+  > Why?
+  >
+  > Sequences used in non-standard ways can be difficult to read.
+
+<a name="forbidden--no-with"></a><a name="16.5"></a>
+- [16.5](#forbidden--no-with) Do not use the `with` statement.
+
+  > eslint: [`no-with`](http://eslint.org/docs/rules/no-with)
+  >
+  > defined in: `rules/eslint/best-practices`
+
+  ```js
+  // bad
+  with (point) {
+    r = Math.sqrt(x * x + y * y);
+  }
+
+  // good
+  const r = ({x, y}) => Math.sqrt(x * x + y * y);
+  ```
+
+  > Why?
+  >
+  > `with` adds members of an object to the current scope, making it impossible to tell what a variable inside the block actually refers to.
 
 **[⬆️ back to top](#table-of-contents)**
 
