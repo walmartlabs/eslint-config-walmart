@@ -1824,7 +1824,7 @@
   if ("red" === color)
 
   // good
-  if (color === red)
+  if (color === "red")
   ```
 
   > Why?
