@@ -3658,6 +3658,8 @@
   >
   > Walmart code style preference.
 
+**[⬆️ back to top](#table-of-contents)**
+
 ## Acknowledgements
 The Walmart JavaScript Style Guide was inspired by:
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
