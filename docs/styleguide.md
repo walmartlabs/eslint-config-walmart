@@ -20,6 +20,7 @@
 1. [Commas & Semicolons](#commas--semicolons)
 1. [Naming Conventions](#naming-conventions)
 1. [Forbidden Features](#forbidden-features)
+1. [JSX](#jsx)
 1. [Acknowledgements](#acknowledgements)
 
 ## Types
@@ -495,6 +496,25 @@
   > Why?
   >
   > Unused expressions have no effect on the program.
+
+<a name="variables--operator-shorthand"></a><a name="2.15"></a>
+- [2.15](#variables--operator-shorthand) Use operator shorthand whenever possible.
+
+  > eslint: [`operator-assignment`](http://eslint.org/docs/rules/operator-assignment)
+  >
+  > defined in: `rules/eslint/style`
+
+  Use       | Instead of
+  ----------|------------
+  x += y    | x = x + y
+  x -= y    | x = x - y
+  x *= y    | x = x * y
+  x /= y    | x = x / y
+  x %= y    | x = x % y
+
+  > Why?
+  >
+  > Operator assignment shorthand is more concise.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -1569,6 +1589,85 @@
   >
   > Overriding a function declaration is likely a mistake.
 
+<a name="functions--max-nested-callbacks"></a><a name="7.21"></a>
+- [7.21](#functions--max-nested-callbacks) Do not nest callbacks more than three deep.
+
+  > eslint: [`max-nested-callbacks`](http://eslint.org/docs/rules/max-nested-callbacks)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  callPlay(function() { // callback 1
+    snapToRodgers(function() { // callback 2
+      throwToJordy(function() { // callback 3
+        scoreTouchdown(function() { // callback 4
+          // win
+        });
+      });
+    });
+  });
+  ```
+
+  > Why?
+  >
+  > Nesting more than 3 callbacks can be difficult to read. Consider refactoring.
+
+<a name="functions--max-params"></a><a name="7.22"></a>
+- [7.22](#functions--max-params) Do not use more than three parameters in a function call.
+
+  > eslint: [`max-params`](http://eslint.org/docs/rules/max-params)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function doSomething(option1, option2, option3, option4) {
+    return option1 + option2 + option3 + option4;
+  }
+
+  // good
+  function doSomething(options) {
+    const {
+      option1,
+      option2,
+      option3,
+      option4
+    } = options;
+
+    return option1 + option2 + option3 + option4;
+  }
+  ```
+
+  > Why?
+  >
+  > It can be difficult to remember the order of many parameters. Pass an options object instead to handle large amounts of argument data.
+
+<a name="functions--max-statements"></a><a name="7.23"></a>
+- [7.23](#functions--max-statements) Do not have more than 15 statements in a function.
+
+  > eslint: [`max-statements`](http://eslint.org/docs/rules/max-statements)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function doSomething() {
+    var a = 1; // statement 1
+    var b = 2; // statement 2
+    var c = 3; // statement 3;
+
+    // more statements here
+
+    var o = 15; // statement 15;
+    var p = 16; // statement 16;
+  }
+  ```
+
+  > Why?
+  >
+  > Prefer smaller functions. If number of statements exceeds 15, consider breaking the function up into smaller pieces.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Classes & Constructors
@@ -1723,6 +1822,25 @@
   > Why?
   >
   > `this` could be undefined if referenced outside of an object or class.
+
+<a name="constructors--new-parens"></a><a name="8.6"></a>
+- [8.6](#constructors--new-parens) Always use parentheses when calling `new` on a constructor.
+
+  > eslint: [`new-parens`](http://eslint.org/docs/rules/new-parens)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var search = new Search;
+
+  // good
+  var search = new Search();
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -2200,7 +2318,7 @@
 <a name="whitespace--spaces"></a><a name="12.3"></a>
 - [12.3](#whitespace--spaces) Use soft tabs set to 2 spaces.
 
-  > eslint: [`indent`](http://eslint.org/docs/rules/indent.html)
+  > eslint: [`indent`](http://eslint.org/docs/rules/indent.html), [`no-mixed-spaces-and-tabs`](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs), [`no-trailing-spaces`](http://eslint.org/docs/rules/no-trailing-spaces)
   >
   > defined in: `rules/eslint/style`
 
@@ -2347,6 +2465,10 @@
 
 <a name="whitespace--after-blocks"></a><a name="12.8"></a>
 - [12.8](#whitespace--after-blocks) Leave a blank line after blocks and before the next statement.
+
+  > eslint: [`no-multiple-empty-lines`](http://eslint.org/docs/rules/no-multiple-empty-lines)
+  >
+  > defined in: `rules/eslint/style`
 
   ```js
   // bad
@@ -2720,6 +2842,151 @@
   > Why?
   >
   > Unreachable code will never be executed and is likely a mistake.
+
+<a name="whitespace--objects"></a><a name="12.20"></a>
+- [12.20](#whitespace--objects) Use one space after the colon and zero before in objects.
+
+  > eslint: [`key-spacing`](http://eslint.org/docs/rules/key-spacing)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var obj = {
+    a : 1,
+    b:2
+  };
+
+  // good
+  var obj = {
+    a: 1,
+    b: 2
+  };
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="blocks--max-nested"></a><a name="12.21"></a>
+- [12.21](#blocks--max-nested) Do not nest blocks more than 4 levels.
+
+  > eslint: [`max-depth`](http://eslint.org/docs/rules/max-depth)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function doSomething() {
+    if (true) { // level 1
+      if (true) { // level 2
+        if (true) { // level 3
+          if (true) { // level 4
+            if (true) { // level 5
+              console.log("3deep5me");
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > Consider refactoring if you need to go more than 4 levels deep in nesting.
+
+<a name="blocks--lonely-if"></a><a name="12.22"></a>
+- [12.22](#blocks--lonely-if) Do not include an `if` block as the only statement in an `else` block.
+
+  > eslint: [`no-lonely-if`](http://eslint.org/docs/rules/no-lonely-if)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  if (test) {
+    doSomething();
+  } else {
+    if (test2) {
+      doSomethingElse();
+    }
+  }
+
+  // good
+  if (test) {
+    doSomething();
+  } else if (test2) {
+    doSomethingElse();
+  }
+  ```
+
+  > Why?
+  >
+  > Lonley `if` statements are better suited for an `else if` statement.
+
+<a name="whitespace--function-identifier"></a><a name="12.23"></a>
+- [12.23](#whitespace--function-identifier) Do not add space between a function identifier and its application.
+
+  > eslint: [`no-spaced-func`](http://eslint.org/docs/rules/no-spaced-func)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  doSomething (stuff);
+
+  // good
+  doSomething(stuff);
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--semicolons"></a><a name="12.24"></a>
+- [12.24](#whitespace--semicolons) Always include a space after semicolons that are not at the end of a line and never include a space before a semicolon.
+
+  > eslint: [`semi-spacing`](http://eslint.org/docs/rules/semi-spacing)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var x = 8 ;
+  var x = 2;var y = 3;
+
+  // good
+  var x = 8;
+  var x = 2; var y = 3;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="whitespace--unary"></a><a name="12.25"></a>
+- [12.25](#whitespace--unary) Use spacing after unary words and never use spacing before/after unary nonwords.
+
+  > eslint: [`space-unary-ops`](http://eslint.org/docs/rules/space-unary-ops)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var search = new[Search][0];
+
+  page ++;
+
+  // good
+  var search = new Search();
+
+  page++;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -3138,6 +3405,37 @@
   >
   > Accessor names should be descriptive of their action.
 
+<a name="naming--consistent-this"></a><a name="15.7"></a>
+- [15.7](#naming--consistent-this) If `this` must be stored in a variable, name the variable `self`.
+
+  > eslint: [`consistent-this`](http://eslint.org/docs/rules/consistent-this)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  function doSomething() {
+    const that = this;
+
+    function doSomethingElse() {
+      return that;
+    }
+  }
+
+  // good
+  function doSomething() {
+    const self = this;
+
+    function doSomethingElse() {
+      return self;
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Forbidden Features
@@ -3309,7 +3607,56 @@
   >
   > Walmart code is transpiled.
 
+<a name="forbidden--bitwise"></a><a name="16.10"></a>
+- [16.10](#forbidden--bitwise) Do not use bitwise operators.
+
+  > eslint: [`no-bitwise`](http://eslint.org/docs/rules/no-bitwise)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var x = y | z;
+  var x = y & z;
+  var x = y ^ z;
+  var x = ~ z;
+  var x = y << z;
+  var x = y >> 2;
+  var x = y >>> z;
+  x |= y;
+  x &= y;
+  x ^= y;
+  x <<= y;
+  x >>= y;
+  x >>>=y;
+  ```
+
+  > Why?
+  >
+  > Bitwise operators are seldom needed and can be confused with logical operators.
+
 **[⬆️ back to top](#table-of-contents)**
+
+## JSX
+
+<a name="jsx--quotes"></a><a name="17.1"></a>
+- [17.1](#jsx--quotes) Use double quotes for JSX attributes.
+
+  > eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  <Component name='myComponent' />
+
+  // good
+  <Component name="myComponent" />
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
 
 ## Acknowledgements
 The Walmart JavaScript Style Guide was inspired by:
