@@ -3293,6 +3293,22 @@
   >
   > ASCII characters 0-31 are invisible characters rarely used in JavaScript and are probably an error if in a regular expression.
 
+<a name="forbidden--strict"></a><a name="16.9"></a>
+- [16.9](#forbidden--strict) Do not use directive `"use strict"`.
+
+  > eslint: [`strict`](http://eslint.org/docs/rules/strict)
+  >
+  > defined in: `rules/eslint/strict`
+
+  ```js
+  // bad
+  "use strict";
+  ```
+
+  > Why?
+  >
+  > Walmart code is transpiled.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Acknowledgements
