@@ -9,7 +9,7 @@
 1. [Objects](#objects)
 1. [Arrays](#arrays)
 1. [Destructuring](#destructuring)
-1. [Strings](#strings)
+1. [Strings & Regular Expressions](#strings--regular-expressions)
 1. [Functions](#functions)
 1. [Classes & Constructors](#classes--constructors)
 1. [Modules](#modules)
@@ -97,6 +97,44 @@
   > Why?
   >
   > Octal is deprecated in ES5.
+
+<a name="types--isnan"></a><a name="1.5"></a>
+- [1.5](#types--isnan) Use `isNaN()` to check type `NaN`.
+
+  > eslint: [`use-isnan`](http://eslint.org/docs/rules/use-isnan)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  console.log(NaN === NaN); // false
+
+  // good
+  console.log(isNaN(NaN)); // true
+  ```
+
+  > Why?
+  >
+  > `NaN` is equal to nothing, including itself. Use `isNaN` to check if a value is `NaN`.
+
+<a name="types--typeof"></a><a name="1.6"></a>
+- [1.6](#types--typeof) Only use valid strings for `typeof` expressions.
+
+  > eslint: [`valid-typeof`](http://eslint.org/docs/rules/valid-typeof)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  typeof foo === "not a real type";
+
+  // good
+  typeof foo === "number";
+  ```
+
+  > Why?
+  >
+  > String comparisons to typeof can only evaluate as `true` if they are one of `"undefined"`, `"object"`, `"boolean"`, `"number"`, `"string"`, `"function"`, or `"symbol"`.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -721,6 +759,48 @@
   >
   > `__proto__` is deprecated in ES3.1.
 
+<a name="objects--no-dupe-keys"></a><a name="3.12"></a>
+- [3.12](#objects--no-dupe-keys) Do not use the same key more than once in an object.
+
+  > eslint: [`no-dupe-keys`](http://eslint.org/docs/rules/no-dupe-keys)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var obj = {
+    myKey: "a",
+    myKey: "b"
+  };
+
+  // good
+  var obj = {
+    myKey: "a",
+    myOtherKey: "b"
+  };
+  ```
+
+  > Why?
+  >
+  > Multiple keys with the same name can cause problems.
+
+<a name="objects--global-objects"></a><a name="3.13"></a>
+- [3.13](#objects--global-objects) Do not call global objects as functions.
+
+  > eslint: [`no-obj-calls`](http://eslint.org/docs/rules/no-obj-calls)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  Math();
+  JSON();
+  ```
+
+  > Why?
+  >
+  > Global objects like `Math` and `JSON` can look like class functions due to their capitalization. However, they are objects and cannot be invoked as functions.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Arrays
@@ -761,8 +841,8 @@
   >
   > `Array.push` is more concise.
 
-<a name="arrays-array-spreads"></a><a name="4.3"></a>
-- [4.3](#arrays-array-spreads) Use array spreads `...` to copy arrays.
+<a name="arrays--array-spreads"></a><a name="4.3"></a>
+- [4.3](#arrays--array-spreads) Use array spreads `...` to copy arrays.
 
   ```js
   // bad
@@ -781,6 +861,25 @@
   > Why?
   >
   > Array spreads is much more concise.
+
+<a name="arrays--no-sparse"></a><a name="4.4"></a>
+- [4.4](#arrays--no-sparse) Do not use sparse arrays.
+
+  > eslint: [`no-sparse-arrays`](http://eslint.org/docs/rules/no-sparse-arrays)
+  >
+  > `rules/eslint/errors`
+
+  ```js
+  // bad
+  var items = [,,];
+
+  // good
+  var items = new Array(3);
+  ```
+
+  > Why?
+  >
+  > Sparse arrays can be confusing.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -878,7 +977,7 @@
 
 **[⬆️ back to top](#table-of-contents)**
 
-## Strings
+## Strings & Regular Expressions
 
 <a name="strings--quotes"></a><a name="6.1"></a>
 - [6.1](#strings--quotes) Use double quotes `""` for strings.
@@ -957,6 +1056,60 @@
   > Why?
   >
   > Walmart code style preference.
+
+<a name="regex--no-empty-character"></a><a name="6.4"></a>
+- [6.4](#regex--no-empty-character) Don't use empty character classes in regular expressions.
+
+  > eslint: [`no-empty-character-class`](http://eslint.org/docs/rules/no-empty-character-class)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var regex = /^abc[]/;
+  ```
+
+  > Why?
+  >
+  > An empty character class in a regular expression doesn't match anything and is likely a mistake.
+
+<a name="regex--no-invalid"></a><a name="6.5"></a>
+- [6.5](#regex--no-invalid) Regular expressions must be valid.
+
+  > eslint: [`no-invalid-regexp`](http://eslint.org/docs/rules/no-invalid-regexp)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var regex = /[/;
+
+  // good
+  var regex = /[a-z]/;
+  ```
+
+  > Why?
+  >
+  > Invalid regular expressions will throw an error when used.
+
+<a name="regex--multiple-spaces"></a><a name="6.6"></a>
+- [6.6](#regex--multiple-spaces) Regular expressions should not contain multiple spaces.
+
+  > eslint: [`no-regex-spaces`](http://eslint.org/docs/rules/no-regex-spaces)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var regex = /foo   bar/;
+
+  // good
+  var regex = /foo {3}bar/;
+  ```
+
+  > Why?
+  >
+  > It is easier to read the repeating character regular expression.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -1362,6 +1515,60 @@
   >
   > `Error` objects contain extra metadata about how they were thrown.
 
+<a name="functions--no-dupe-args"></a><a name="7.18"></a>
+- [7.18](#functions--no-dupe-args) Don't use the same parameter more than once in a function definition.
+
+  > eslint: [`no-dupe-args`](http://eslint.org/docs/rules/no-dupe-args)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  function doSomething(a, b, a) {
+    console.log(`value of the second a: ${a}`);
+  }
+  ```
+
+  > Why?
+  >
+  > The second parameter with the same name will take precedence, which is probably an error.
+
+<a name="functions--no-exception-assign"></a><a name="7.19"></a>
+- [7.19](#functions--no-exception-assign) Don't make an assignment on the exception parameter in a `catch` clause.
+
+  > eslint: [`no-ex-assign`](http://eslint.org/docs/rules/no-ex-assign)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  try {
+    doSomething();
+  } catch (e) {
+    e = 10;
+  }
+  ```
+
+  > Why?
+  >
+  > Overwriting the exception variable will make it inaccessible.
+
+<a name="functions--override-declarations"></a><a name="7.20"></a>
+- [7.20](#functions--override-declarations") Do not override function declarations.
+
+  > eslint: [`no-func-assign`](http://eslint.org/docs/rules/no-func-assign)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  function myFunction() {}
+  myFunction = function() {};
+  ```
+
+  > Why?
+  >
+  > Overriding a function declaration is likely a mistake.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Classes & Constructors
@@ -1683,6 +1890,25 @@
   >
   > `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
 
+<a name="iterators--lhs-negation"></a><a name="10.3"></a>
+- [10.3](#iterators--lhs-negation) Do not negate the left hand side operand in `in` expressions.
+
+  > eslint: [`no-negated-in-lhs`](http://eslint.org/docs/rules/no-negated-in-lhs)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  if (!key in object)
+
+  // good
+  if (!(key in object))
+  ```
+
+  > Why?
+  >
+  > Negating the left hand operand in `in` expressions is likely a mistake.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Comparison Operators & Equality
@@ -1830,6 +2056,91 @@
   > Why?
   >
   > Walmart code style preference.
+
+<a name="comparison--no-assign"></a><a name="11.7"></a>
+- [11.7](#comparison--no-assign) Do not make assignments in conditional statements.
+
+  > eslint: [`no-cond-assign`](http://eslint.org/docs/rules/no-cond-assign)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  if (results.sortBy = "price")
+
+  // good
+  if (results.sortBy === "price")
+  ```
+
+  > Why?
+  >
+  > Assignments in a conditional statement are often a mistake when a comparison `===` was actually intended.
+
+<a name="comparison--no-constant"></a><a name="11.8"></a>
+- [11.8](#comparison--no-constant") Do not use a constant expression or literal as a test condition.
+
+  > eslint: [`no-constant-condition`](http://eslint.org/docs/rules/no-constant-condition)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  if (false)
+
+  // good
+  if (booleanTestCondition)
+  ```
+
+  > Why?
+  >
+  > A constant expression does not necessitate a comparison.
+
+<a name="comparison--no-extra-boolean-cast"></a><a name="11.9"></a>
+- [11.9](#comparison--no-extra-boolean-cast) Do not unecessarily cast a boolean variable.
+
+  > eslint: [`no-extra-boolean-cast`](http://eslint.org/docs/rules/no-extra-boolean-cast)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  if (!!testConditional)
+
+  // bad
+  !!ternaryConditional ? ifTrue() : ifFalse ();
+
+  // bad
+  var tripleNegative = !!!booleanValue;
+
+  // good
+  var castBoolean = !!notBooleanValue;
+
+  // good
+  if (!notConditional)
+  ```
+
+  > Why?
+  >
+  > This is just unnecessary.
+
+<a name="comparison--no-extra-parens"></a><a name="11.10"></a>
+- [11.10](#comparison--no-extra-parens) Do not use unnecessary parentheses.
+
+  > eslint: [`no-extra-parens`](http://eslint.org/docs/rules/no-extra-parens)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  a = (b * c);
+
+  // good
+  a = b * c;
+  ```
+
+  > Why?
+  >
+  > Unneeded parentheses make code harder to read.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -2282,6 +2593,134 @@
   >
   > Walmart code style preference.
 
+<a name="blocks--no-duplicate-case"></a><a name="12.15"></a>
+- [12.15](#blocks--no-duplicate-case) Don't use more than one `case` statement with the same name.
+
+  > eslint: [`no-duplicate-case`](http://eslint.org/docs/rules/no-duplicate-case)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  switch (a) {
+    case 1:
+      break;
+    case 2:
+      break;
+    case 1:
+      break;
+  }
+  ```
+
+  > Why?
+  >
+  > Multiple `case` statements with the same is likely an error.
+
+<a name="blocks--no-empty"></a><a name="12.16"></a>
+- [12.16](#blocks--no-empty) Don't leave block statements empty.
+
+  > eslint: [`no-empty`](http://eslint.org/docs/rules/no-empty)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  if (condition) {
+  }
+  ```
+
+  > Why?
+  >
+  > Empty blocks don't do anything.
+
+<a name="blocks--no-inner-functions"></a><a name="12.17"></a>
+- [12.17](#blocks--no-inner-functions) Do not declare functions inside blocks.
+
+  > eslint: [`no-inner-declarations`](http://eslint.org/docs/rules/no-inner-declarations)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  if (test) {
+    function doSomething();
+  }
+
+  // good
+  var doSomething;
+  if (test) {
+    doSomething = function() {};
+  }
+  ```
+
+  > Why?
+  >
+  > Hoisting can cause unintended results.
+
+<a name="whitespace--no-irregular"></a><a name="12.18"></a>
+- [12.18](#whitespace--no-irregular) Do not use irregular whitespace characters outside of strings.
+
+  > eslint: [`no-irregular-whitespace`](http://eslint.org/docs/rules/no-irregular-whitespace)
+  >
+  > defined in: `rules/eslint/errors`
+
+  Invalid characters:
+  ```
+  \u000B - Line Tabulation (\v) - <VT>
+  \u000C - Form Feed (\f) - <FF>
+  \u00A0 - No-Break Space - <NBSP>
+  \u0085 - Next Line
+  \u1680 - Ogham Space Mark
+  \u180E - Mongolian Vowel Separator - <MVS>
+  \ufeff - Zero Width No-Break Space - <BOM>
+  \u2000 - En Quad
+  \u2001 - Em Quad
+  \u2002 - En Space - <ENSP>
+  \u2003 - Em Space - <EMSP>
+  \u2004 - Tree-Per-Em
+  \u2005 - Four-Per-Em
+  \u2006 - Six-Per-Em
+  \u2007 - Figure Space
+  \u2008 - Punctuation Space - <PUNCSP>
+  \u2009 - Thin Space
+  \u200A - Hair Space
+  \u200B - Zero Width Space - <ZWSP>
+  \u2028 - Line Separator
+  \u2029 - Paragraph Separator
+  \u202F - Narrow No-Break Space
+  \u205f - Medium Mathematical Space
+  \u3000 - Ideographic Space
+  ```
+
+  > Why?
+  >
+  > Non-standard whitespace may be interpreted incorrectly and cause errors.
+
+<a name="blocks--no-unreachable"></a><a name="12.19"></a>
+- [12.19](#blocks--no-unreachable) Do not write code that will be unreachable in a block.
+
+  > eslint: [`no-unreachable`](http://eslint.org/docs/rules/no-unreachable)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  function() {
+    var x = 2;
+    return x;
+    x = 3;
+  }
+
+  while (true) {
+    break;
+    console.log("this is unreachable");
+  }
+  ```
+
+  > Why?
+  >
+  > Unreachable code will never be executed and is likely a mistake.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Comments
@@ -2376,6 +2815,41 @@
     }
   }
   ```
+
+<a name="comments--jsdoc"></a><a name="13.4"></a>
+- [13.4](#comments--jsdoc) Use valid JSDoc comments.
+
+  > eslint: [`valid-jsdoc`](http://eslint.org/docs/rules/valid-jsdoc)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  /**
+   * Add two numbers.
+   * @param {number} num The first number.
+   * @returns The sum of the two numbers.
+   */
+  function add(num1, num2) {
+    return num1 + num2;
+  }
+
+  // good
+  /**
+   * Add two numbers.
+   * @params {number} num1 The first number.
+   * @params {number} num2 The second number.
+   * @returns The sum of the two numbers.
+   */
+  function add(num1, num2) {
+    return num1 + num2;
+  }
+  ```
+
+  > Why?
+  >
+  > Valid JSDoc syntax is required for properly generated documentation.
+
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -2479,6 +2953,50 @@
   > Why?
   >
   > Walmart code style preference.
+
+<a name="semicolons--no-extra"></a><a name="14.4"></a>
+- [14.4](#semicolons--no-extra) Don't use extra semicolons.
+
+  > eslint: [`no-extra-semi`](http://eslint.org/docs/rules/no-extra-semi)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var x = 5;;
+
+  function myFunction() {
+
+  };
+
+  // good
+  var x = 5;
+
+  var myFunction = function() {
+
+  };
+  ```
+
+  > Why?
+  >
+  > Only use semicolons once at the end of non-block lines.
+
+<a name="semicolons--unexpected-multiline"></a><a name="14.5"></a>
+- [14.5](#semicolons--unexpected-multiline) Do not create confusing multiline statements.
+
+  > eslint: [`no-unexpected-multiline`](http://eslint.org/docs/rules/no-unexpected-multiline)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var foo = bar
+  (1 || 2).baz();
+  ```
+
+  > Why?
+  >
+  > Omitting semicolons in some cases will cause multiple lines to be evaluated as one, which may not be the intended behavior.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -2718,6 +3236,62 @@
   > Why?
   >
   > `with` adds members of an object to the current scope, making it impossible to tell what a variable inside the block actually refers to.
+
+<a name="forbidden--no-console"></a><a name="16.6"></a>
+- [16.6](#forbidden--no-console) Do not use `console`.
+
+  > eslint: [`no-console`](http://eslint.org/docs/rules/no-console)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  console.log("test");
+  console.warn("warning");
+  console.error("error");
+  ```
+
+  > Why?
+  >
+  > Console logs should not exist in production code.
+
+<a name="forbidden--no-debugger"></a><a name="16.7"></a>
+- [16.7](#forbidden--no-debugger) Do not use `debugger` statement.
+
+  > eslint: [`no-debugger`](http://eslint.org/docs/rules/no-debugger)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  function doSomething() {
+    debugger;
+    return true;
+  }
+  ```
+
+  > Why?
+  >
+  > Set breakpoints in your debugging tool instead.
+
+<a name="forbidden--no-control-regex"></a><a name="16.8"></a>
+- [16.8](#forbidden--no-control-regex) Do not use control characters in regular expressions.
+
+  > eslint: [`no-control-regex`](http://eslint.org/docs/rules/no-control-regex)
+  >
+  > defined in: `rules/eslint/errors`
+
+  ```js
+  // bad
+  var pattern = /\x1f/;
+
+  // good
+  var pattern = /\x20/;
+  ```
+
+  > Why?
+  >
+  > ASCII characters 0-31 are invisible characters rarely used in JavaScript and are probably an error if in a regular expression.
 
 **[⬆️ back to top](#table-of-contents)**
 
