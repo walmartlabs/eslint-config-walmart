@@ -220,11 +220,11 @@
   ```
 
 <a name="variables--const"></a><a name="2.5"></a>
-- [2.5](#variables--const) Always use `const` to declare variables.
+- [2.5](#variables--const) Always use `const` to declare variables. Do not initialze a variable to `undefined`.
 
-  > eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef), [`prefer-const`](http://eslint.org/docs/rules/prefer-const)
+  > eslint: [`no-undef`](http://eslint.org/docs/rules/no-undef), [`prefer-const`](http://eslint.org/docs/rules/prefer-const), [`no-undef-init`](http://eslint.org/docs/rules/no-undef-init)
   >
-  > defined in: `rules/eslint/variables`, `rules/eslint/es6`
+  > defined in: `rules/eslint/variables`, `rules/eslint/es6`, `rules/eslint/variables`
 
   ```js
   // bad
@@ -232,7 +232,17 @@
 
   // good
   const superPower = new SuperPower();
+
+  // bad
+  let notSureYet = undefined;
+
+  // good
+  let notSureYet;
   ```
+
+  > Why?
+  >
+  > Variables that aren't defined get hoisted to the global scope. Variables without a value at initialization are `undefined` by default.
 
 <a name="variables--one-const"></a><a name="2.6"></a>
 - [2.6](#variables--one-const) Use one `const` declaration per variable.
@@ -515,6 +525,112 @@
   > Why?
   >
   > Operator assignment shorthand is more concise.
+
+<a name="variables--catch"></a><a name="2.16"></a>
+- [2.16](#variables--catch) Do not use the same variable name in a catch clause as a variable in the outer scope.
+
+  > eslint: [`no-catch-shadow`](http://eslint.org/docs/rules/no-catch-shadow)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  var error = "error";
+
+  try {
+    throw "problem";
+  } catch (error) {
+    console.log(error);
+  }
+
+  // good
+  var error = "error";
+
+  try {
+    throw "problem";
+  } catch (e) {
+    console.log(e);
+  }
+  ```
+
+  > Why?
+  >
+  > There is a bug in IE8 that can cause the `catch` argument to leak into the outer scope.
+
+<a name="variables--labels"></a><a name="2.17"></a>
+- [2.17](#variables--labels) Do not use a label with the same name as a variable in scope.
+
+  > eslint: [`no-label-var`](http://eslint.org/docs/rules/no-label-var)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  var first = 0;
+  while (true) {
+    first:
+      while (true) {
+        break first;
+      }
+  }
+  ```
+
+  > Why?
+  >
+  > Labels with the same name as a variable can be confused.
+
+<a name="variables--no-shadow"></a><a name="2.18"></a>
+- [2.18](#variables--no-shadow) Do not name a variable the same as a variable in the outer scope.
+
+  > eslint: [`no-shadow`](http://eslint.org/docs/rules/no-shadow)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  var a = 3;
+  function() {
+    var a = 4;
+  }
+  ```
+
+  > Why?
+  >
+  > This can be confusing and the variable in the outer scope is no longer accessible from the inner scope.
+
+<a name="variables--unused"></a><a name="2.19"></a>
+- [2.19](#variables--unused) Don't leave variables unused.
+
+  > eslint: [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  var x = "unused";
+  /* end of script */
+  ```
+
+  > Why?
+  >
+  > Unused variables are extra unnecessary clutter.
+
+<a name="variables--no-use-before-define"></a><a name="2.20"></a>
+- [2.20](#variables--no-use-before-define)
+
+  > eslint: [`no-use-before-define`](http://eslint.org/docs/rules/no-use-before-define)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  console.log(a);
+  var a = "test";
+  ```
+
+  > Why?
+  >
+  > Variable declarations get hoisted to the top of the scope, so this is valid but confusing.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -3436,6 +3552,22 @@
   >
   > Walmart code style preference.
 
+<a name="naming--restricted-names"></a><a name="15.8"></a>
+- [15.8](#naming--restricted-names) Do not use restricted names.
+
+  > eslint: [`no-shadow-restricted-names`](http://eslint.org/docs/rules/no-shadow-restricted-names)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  var undefined = true;
+  ```
+
+  > Why?
+  >
+  > Just no.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Forbidden Features
@@ -3634,6 +3766,23 @@
   > Why?
   >
   > Bitwise operators are seldom needed and can be confused with logical operators.
+
+<a name="forbidden--delete-var"></a><a name="16.11"></a>
+- [16.11](#forbidden-delete-var) Do not use the `delete` operator on a variable.
+
+  > eslint: [`no-delete-var`](http://eslint.org/docs/rules/no-delete-var)
+  >
+  > defined in: `rules/eslint/variables`
+
+  ```js
+  // bad
+  var x = 1;
+  delete x;
+  ```
+
+  > Why?
+  >
+  > `delete` is meant to be used for removing a property from an object. Using it on a variable may cause unexpected behavior.
 
 **[⬆️ back to top](#table-of-contents)**
 
