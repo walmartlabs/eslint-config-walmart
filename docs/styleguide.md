@@ -3568,6 +3568,25 @@
   >
   > Just no.
 
+<a name="naming--filenames"></a><a name="15.9"></a>
+- [15.9](#naming--filenames) Name files using dash-casing.
+
+  > eslint: [`filenames/match-regex`](https://github.com/selaux/eslint-plugin-filenames#consistent-filenames-via-regex-match-regex)
+  >
+  > defined in: `rules/filenames`
+
+  ```
+  # bad
+  myComponent.jsx
+
+  # good
+  my-component.jsx
+  ```
+
+  > Why?
+  >
+  > Walmart file naming preference.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Forbidden Features
