@@ -204,7 +204,7 @@
 
   > Why?
   >
-  > `let` is block-scoped rather than function-scoped like `var`.
+  > `let` is block-scoped rather than function-scoped like `var`. Read more in this [blog post](https://hackernoon.com/why-you-shouldnt-use-var-anymore-f109a58b9b70)
 
 <a name="references--block-scope"></a><a name="2.4"></a>
 - [2.4](#references--block-scope) Note that both `let` and `const` are block-scoped.
@@ -631,6 +631,23 @@
   > Why?
   >
   > Variable declarations get hoisted to the top of the scope, so this is valid but confusing.
+
+<a name="variables--no-const-assign"></a><a name="2.21"></a>
+- [2.21](http://eslint.org/docs/rules/no-const-assign)
+
+  > eslint: [`no-const-assign`](http://eslint.org/docs/rules/no-const-assign)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  const doNotChange = "constant";
+  doNotChange = "mutated";
+  ```
+
+  > Why?
+  >
+  > Changing a `const` assignment will result in a runtime error.
 
 **[⬆️ back to top](#table-of-contents)**
 
@@ -1958,6 +1975,88 @@
   >
   > Walmart code style preference.
 
+<a name="constructors--super"></a><a name="8.7"></a>
+- [8.7](#constructors--super) Use `super()` when required in constructors.
+
+  > eslint: [`constructor-super`](http://eslint.org/docs/rules/constructor-super)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  class Shape {
+    constructor() {
+      super();
+    }
+  }
+
+  class Square extends Shape {
+    constructor() {}
+  }
+
+  // good
+  class Shape {
+    constructor() {}
+  }
+
+  class Square extends Shape {
+    constructor() {
+      super();
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > Derived classes must call `super()` and non derived classes must not.
+
+  <a name="classes--assign"></a><a name="8.8"></a>
+  - [8.8](#classes--assign) Do not modify class declaration variables.
+
+  > eslint: [`no-class-assign`](http://eslint.org/docs/rules/no-class-assign)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  class Component {}
+  Component = undefined;
+  ```
+
+  > Why?
+  >
+  > Classes can be reassigned, but should not be.
+
+<a name="constructors--this-before-super"></a><a name="8.9"></a>
+- [8.9](#constructors--this-before-super) Do not call `this` before `super()` in a constructor.
+
+  > eslint: [`no-this-before-super`](http://eslint.org/docs/rules/no-this-before-super)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  class Square extends Shape {
+    constructor() {
+      this.sides = 4;
+      super();
+    }
+  }
+
+
+  // good
+  class Square extends Shape {
+    constructor() {
+      super();
+      this.sides = 4;
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > In a derived class, use of `this` before `super()` causes a reference error.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Modules
@@ -2142,6 +2241,30 @@
   > Why?
   >
   > Negating the left hand operand in `in` expressions is likely a mistake.
+
+<a name="generators--require-yield"></a><a name="10.4"></a>
+- [10.4](#generators--require-yield) Generators must contain the `yield` keyword.
+
+  > eslint: [`require-yield`](http://eslint.org/docs/rules/require-yield)
+  >
+  > defined in: `rules/eslint/es6`
+
+  ```js
+  // bad
+  function* myGenerator() {
+    return true;
+  }
+
+  // good
+  function* myGenerator() {
+    yield false;
+    return true;
+  }
+  ```
+
+  > Why?
+  >
+  > `yield` is required to pause the generator and pass a value to the generator's `next()` method.
 
 **[⬆️ back to top](#table-of-contents)**
 
