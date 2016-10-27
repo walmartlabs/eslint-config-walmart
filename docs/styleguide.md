@@ -20,7 +20,7 @@
 1. [Commas & Semicolons](#commas--semicolons)
 1. [Naming Conventions](#naming-conventions)
 1. [Forbidden Features](#forbidden-features)
-1. [JSX](#jsx)
+1. [React & JSX](#react--jsx)
 1. [Acknowledgements](#acknowledgements)
 
 ## Types
@@ -3928,7 +3928,7 @@
 
 **[⬆️ back to top](#table-of-contents)**
 
-## JSX
+## React & JSX
 
 <a name="jsx--quotes"></a><a name="17.1"></a>
 - [17.1](#jsx--quotes) Use double quotes for JSX attributes.
@@ -3948,6 +3948,392 @@
   > Why?
   >
   > Walmart code style preference.
+
+<a name="react--no-deprecated"></a><a name="17.2"></a>
+- [17.2](#react--no-deprecated) Do not use deprecated methods.
+
+  > eslint: [`react/no-deprecated`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-deprecated.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  React.render(<MyComponent />, root);
+
+  // good
+  ReactDOM.render(<MyComponent />, root);
+  ```
+
+  > Why?
+  >
+  > Deprecated methods will be removed in future versions of React.
+
+<a name="react--no-lifecycle-set-state"></a><a name="17.3"></a>
+- [17.3](#react--no-lifecycle-set-state) Do not call `setState()` inside of the `componentDidMount()` or `componentDidUpdate()` lifecycle methods.
+
+  > eslint: [`react/no-did-mount-set-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-mount-set-state.md), [`react/no-did-update-set-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md)
+  >
+  > defined in: `rules/react`
+
+  ```js
+  // bad
+  class MyComponent extends React.Component {
+    componentDidMount() {
+      this.setState({
+        name: this.props.name.toUpperCase()
+      });
+    }
+
+    componentDidUpdate() {
+      this.setState({
+        name: this.props.name.toUpperCase()
+      });
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > Updating the state after a component mount or update will trigger a second `render()` call.
+
+<a name="react--no-direct-mutation-state"></a><a name="17.4"></a>
+- [17.4](#react--no-direct-mutation-state) Do not directly mutate `this.state`.
+
+  > eslint: [`react/no-direct-mutation-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md)
+  >
+  > defined in: `rules/react`
+
+  ```js
+  // bad
+  class MyComponent extends React.Component {
+    componentWillMount: function() {
+      this.state.name = this.props.name.toUpperCase();
+    }
+  }
+
+  // good
+  class MyComponent extends React.Component {
+    componentWillMount: function() {
+      this.setState({
+        name: this.props.name.toUpperCase();=
+      });
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > [Shared mutable state is the root of all evil.](http://henrikeichenhardt.blogspot.com/2013/06/why-shared-mutable-state-is-root-of-all.html)
+
+<a name="react--no-is-mounted"></a><a name="17.5"></a>
+- [17.5](#react--no-is-mounted) Do not use `isMounted`.
+
+  > eslint: [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md)
+  >
+  > defined in: `rules/react`
+
+  ```js
+  // bad
+  var MyComponent = React.createClass({
+    handleClick: function() {
+      if (this.isMounted()) {
+        return;
+      }
+    }
+  });
+  ```
+
+  > Why?
+  >
+  > `isMounted` is not available to ES6 classes and will be deprecated.
+
+<a name="jsx--no-unknown-property"></a><a name="17.6"></a>
+- [17.6](#jsx--no-unknown-property) Do not use unknown properties in JSX.
+
+  > eslint: [`react/no-unknown-property`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  var myJSX = <MyComponent class="wont-work" />;
+
+  // good
+  var myJSX = <MyComponent className="will-work" />;
+  ```
+
+  > Why?
+  >
+  > An unknown JSX property is probably a mistake.
+
+<a name="react--prefer-es6-class"></a><a name="17.7"></a>
+- [17.7](#react--prefer-es6-class) Use ES6 class instead of `React.createClass()`.
+
+  > eslint: [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md)
+  >
+  > defined in: `rules/react`
+
+  ```js
+  // bad
+  var MyComponent = React.createClass({
+    render: // ...
+  });
+
+  // good
+  class MyComponent extends React.Component {
+    render() {
+      // ...
+    }
+  }
+  ```
+
+  > Why?
+  >
+  > ES6 classes are the new and preferred method of creating a component.
+
+<a name="react--prop-types"></a><a name="17.8"></a>
+- [17.8](#react--prop-types) Always validate prop types.
+
+  > eslint: [`react/prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  const Button = ({ name }) => (
+    <button>{name}</button>
+  );
+
+  // good
+  const Button = ({ name }) => (
+    <button>{name}</button>
+  );
+
+  Button.propTypes = {
+    name: React.PropTypes.string.isRequired
+  };
+  ```
+
+  > Why?
+  >
+  > Prop types helps catch errors.
+
+<a name="jsx--react-scope"></a><a name="17.9"></a>
+- [17.9](#jsx--react-scope) Make sure `React` is in scope when writing JSX.
+
+  > eslint: [`react/react-in-jsx-scope`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md), [`react/jsx-uses-react`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  var myJSX = (<span></span>);
+
+  // good
+  import React from "react";
+
+  var myJSX = (<span></span>);
+  ```
+
+  > Why?
+  >
+  > JSX syntax requires `React` to compile.
+
+<a name="jsx--self-closing"></a><a name="17.10"></a>
+- [17.10](#jsx--self-closing) Don't use a closing tag on a self-closing tag.
+
+  > eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  var MyComponent = <MyComponent></MyComponent>;
+
+  // good
+  var MyComponent = <MyComponent />;
+  ```
+
+  > Why?
+  >
+  > Self-closing tags are more concise.
+
+<a name="jsx--wrap-multilines"></a><a name="17.11"></a>
+- [17.11](#jsx--wrap-multilines) Wrap multiline JSX in parentheses.
+
+  > eslint: [`react/wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  const MyComponent = <div>
+    <p>Test</p>
+  </div>;
+
+  // good
+  const MyComponent = (
+    <div>
+      <p>Test</p>
+    </div>
+  );
+  ```
+
+  > Why?
+  >
+  > This improves readability.
+
+<a name="jsx--boolean-attributes"></a><a name="17.12"></a>
+- [17.12](#jsx--boolean-attributes) Always write the value of a boolean attribute.
+
+  > eslint: [`react/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md)
+  >
+  > `rules/react`
+
+  ```jsx
+  // bad
+  const checkbox = <Checkbox checked />;
+
+  // good
+  const checkbox = <Checkbox checked={true} />;
+  ```
+
+  > Why?
+  >
+  > This improves readability.
+
+<a name="jsx--closing-bracket"></a><a name="17.13"></a>
+- [17.13](#jsx--closing-bracket) Align a tag's closing bracket with the opening bracket.
+
+  > eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  <Button
+    className="button"
+    text="Button" />
+
+  // bad
+  <Button
+    className="button"
+    text="Button"
+    />
+
+  // good
+  <Button
+    className="button"
+    text="button"
+  />
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="jsx--handler-names"></a><a name="17.14"></a>
+- [17.14](#jsx--handler-names) Event handlers should be prefixed `handler`.
+
+  > eslint: [`react/jsx-handler-names`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  <MyComponent onClick={this.click} />
+
+  // good
+  <MyComponent onClick={this.handleClick} />
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="jsx--indent-props"></a><a name="17.15"></a>
+- [17.15](#jsx--indent-props) Multiline props should be indented 2 spaces.
+
+  > eslint: [`react/jsx-indent-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md)
+  >
+  > defined in: `rules/react`
+
+  ```js
+  // bad
+  <Button
+  name="button"
+  className="button"
+  />
+
+  // good
+  <Button
+    name="button"
+    className="button"
+  />
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference.
+
+<a name="jsx--key"></a><a name="17.16"></a>
+- [17.16](#jsx--key) Iterable elements should have a key prop.
+
+  > eslint: [`react/jsx-key`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-key.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  list.map((item) => <li>{item}</li>);
+
+  // good
+  list.map((item, index) => <li key={index}>{item}</li>);
+  ```
+
+  > Why?
+  >
+  > React rendering benefits from key assignments.
+
+<a name="jsx--no-undef"></a><a name="17.17"></a>
+- [17.17](#jsx--no-undef) All components must be defined.
+
+  > eslint: [`react/jsx-no-undef`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md), [`react/jsx-uses-vars`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  <MyComponent />
+
+  // good
+  import MyComponent from "./my-component";
+
+  <MyComponent />
+  ```
+
+  > Why?
+  >
+  > Undefined components will cause a `ReferenceError` at runtime.
+
+<a name="jsx--pascal-case"></a><a name="17.18"></a>
+- [17.18](#jsx--pascal-case) JSX components should be named using PascalCase.
+
+  > eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
+  >
+  > defined in: `rules/react`
+
+  ```jsx
+  // bad
+  <myComponent />
+
+  // good
+  <MyComponent />
+  ```
+
+  > Why?
+  >
+  > This is to distinguish from native HTML tags.
 
 **[⬆️ back to top](#table-of-contents)**
 
