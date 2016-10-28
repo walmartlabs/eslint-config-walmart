@@ -18,7 +18,7 @@
 
 ***
 
-This project is the maintained offshoot of [eslint-config-defaults](https://github.com/walmartlabs/eslint-config-defaults) with just the Walmart Labs-flavored rules included. It is `eslint@2+`-compatible and actively maintained (with love) by the friendly folks at Walmart Labs.
+This project is the maintained offshoot of [eslint-config-defaults](https://github.com/walmartlabs/eslint-config-defaults) with just the Walmart Labs-flavored rules included. It is `eslint@2+`-compatible and actively maintained (with love) by the friendly folks at Walmart Labs. Check out the [style guide](docs/styleguide.md) for a comprehensive list of rules.
 
 ## Installation
 
