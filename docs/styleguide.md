@@ -1133,7 +1133,7 @@
 ## Strings & Regular Expressions
 
 <a name="strings--quotes"></a><a name="6.1"></a>
-- [6.1](#strings--quotes) Use double quotes `""` for strings.
+- [6.1](#strings--quotes) Use double quotes `""` or backticks \` for strings.
 
   > eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html)
   >
@@ -1143,11 +1143,9 @@
   // bad
   const name = 'Aaron Rodgers';
 
-  // bad - template literals should contain interpolation or newlines
-  const name = `Aaron Rodgers`;
-
   // good
   const name = "Aaron Rodgers";
+  const name = `Aaron Rodgers`;
   ```
 
   > Why?
