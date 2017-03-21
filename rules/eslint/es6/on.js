@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "rules": {
+  rules: {
     // require braces in arrow function body
     "arrow-body-style": 0,
     // require parens in arrow function arguments

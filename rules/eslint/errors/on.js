@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "rules": {
+  rules: {
     // disallow trailing commas in object literals
     "comma-dangle": [2, "never"],
     // disallow assignment in conditional expressions

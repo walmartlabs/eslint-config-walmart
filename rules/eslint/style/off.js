@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "rules": {
+  rules: {
     // enforce spacing inside array brackets
     "array-bracket-spacing": 0,
     // disallow or enforce spaces inside of single line blocks
@@ -9,7 +9,7 @@ module.exports = {
     // enforce one true brace style
     "brace-style": 0,
     // require camel case names
-    "camelcase": 0,
+    camelcase: 0,
     // enforce spacing before and after comma
     "comma-spacing": 0,
     // enforce one true comma style
@@ -31,7 +31,7 @@ module.exports = {
     // require identifiers to match the provided regular expression
     "id-match": 0,
     // this option sets a specific tab width for your code
-    "indent": 0,
+    indent: 0,
     // specify whether double or single quotes should be used in JSX attributes
     "jsx-quotes": 0,
     // enforces spacing between keys and values in object literal properties
@@ -117,11 +117,11 @@ module.exports = {
     // require quotes around object literal property names
     "quote-props": 0,
     // specify whether double or single quotes should be used
-    "quotes": 0,
+    quotes: 0,
     // Require JSDoc comment
     "require-jsdoc": 0,
     // require or disallow use of semicolons instead of ASI
-    "semi": 0,
+    semi: 0,
     // enforce spacing before and after semicolons
     "semi-spacing": 0,
     // enforce sorting import declarations within module

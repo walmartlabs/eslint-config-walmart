@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "extends": [
+  extends: [
     "walmart/rules/eslint/best-practices/on",
     "walmart/rules/eslint/errors/on",
     "walmart/rules/eslint/es6/off",
@@ -11,17 +11,17 @@ module.exports = {
     "walmart/rules/eslint/variables/on",
     "walmart/rules/filenames/on"
   ],
-  "parserOptions": {
-    "ecmaVersion": 5,
-    "sourceType": "script",
-    "ecmaFeatures": {}
+  parserOptions: {
+    ecmaVersion: 5,
+    sourceType: "script",
+    ecmaFeatures: {}
   },
-  "env": {
-    "amd": true
+  env: {
+    amd: true
   },
-  "globals": {
-    "module": false,
-    "process": false
+  globals: {
+    module: false,
+    process: false
   },
-  "rules": {}
+  rules: {}
 };

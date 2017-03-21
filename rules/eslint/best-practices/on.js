@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "rules": {
+  rules: {
     // Enforces getter/setter pairs in objects
     "accessor-pairs": 0,
     // enforce return statements in callbacks of array’s methods
@@ -9,19 +9,19 @@ module.exports = {
     // treat var statements as if they were block scoped
     "block-scoped-var": 0,
     // specify the maximum cyclomatic complexity allowed in a program
-    "complexity": [2, 11],
+    complexity: [2, 11],
     // require return statements to either always or never specify values
     "consistent-return": 2,
     // specify curly brace conventions for all control statements
-    "curly": [2, "multi-line"],
+    curly: [2, "multi-line"],
     // require default case in switch statements
     "default-case": 0,
     // enforces consistent newlines before or after dots
     "dot-location": [2, "property"],
     // encourages use of dot notation whenever possible
-    "dot-notation": [2, { "allowKeywords": true }],
+    "dot-notation": [2, { allowKeywords: true }],
     // require the use of === and !==
-    "eqeqeq": 2,
+    eqeqeq: 2,
     // make sure for-in loops have an if statement
     "guard-for-in": 0,
     // disallow the use of alert, confirm, and prompt
@@ -63,13 +63,13 @@ module.exports = {
     // disallow usage of __iterator__ property
     "no-iterator": 2,
     // disallow use of labeled statements
-    "no-labels": [2, {"allowLoop": true, "allowSwitch": true}],
+    "no-labels": [2, { allowLoop: true, allowSwitch: true }],
     // disallow unnecessary nested blocks
     "no-lone-blocks": 2,
     // disallow creation of functions within loops
     "no-loop-func": 2,
     // disallow the use of magic numbers
-    "no-magic-numbers": [2, {"ignore": [-1, 0, 1]}],
+    "no-magic-numbers": [2, { ignore: [-1, 0, 1] }],
     // disallow use of multiple spaces
     "no-multi-spaces": 2,
     // disallow use of multiline strings
@@ -124,12 +124,12 @@ module.exports = {
     // disallow use of the with statement
     "no-with": 2,
     // require use of the second argument for parseInt()
-    "radix": 0,
+    radix: 0,
     // requires to declare all vars on top of their containing scope
     "vars-on-top": 0,
     // require immediate function invocation to be wrapped in parentheses
     "wrap-iife": 0,
     // require or disallow Yoda conditions
-    "yoda": [2, "never"]
+    yoda: [2, "never"]
   }
 };
