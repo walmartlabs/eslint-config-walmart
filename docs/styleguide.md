@@ -2589,7 +2589,7 @@
   ```js
   // bad
   if (test) {
-    return false
+    return false;
   }
 
   // good
