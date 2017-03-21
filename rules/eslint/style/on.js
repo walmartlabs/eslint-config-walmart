@@ -31,7 +31,7 @@ module.exports = {
     // require identifiers to match the provided regular expression
     "id-match": 0,
     // this option sets a specific tab width for your code
-    "indent": [2, 2],
+    "indent": 0,
     // specify whether double or single quotes should be used in JSX attributes
     "jsx-quotes": [2, "prefer-double"],
     // enforces spacing between keys and values in object literal properties
@@ -45,7 +45,7 @@ module.exports = {
     // specify the maximum depth that blocks can be nested
     "max-depth": [2, 4],
     // specify the maximum length of a line in your program
-    "max-len": [2, 100, 2, {"ignoreUrls": true, "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\("}],
+    "max-len": 0,
     // specify the maximum depth callbacks can be nested
     "max-nested-callbacks": [2, 3],
     // limits the number of parameters that can be used in the function declaration.
@@ -101,9 +101,9 @@ module.exports = {
     // disallow whitespace before properties
     "no-whitespace-before-property": 0,
     // require or disallow padding inside curly braces
-    "object-curly-spacing": [0, "never"],
+    "object-curly-spacing": [0, "always"],
     // enforce placing object properties on separate lines
-    "object-property-newline": 0,
+    "object-property-newline": [2, { "allowMultiplePropertiesPerLine": true }],
     // allow just one var statement per function
     "one-var": [2, "never"],
     // require or disallow an newline around variable declarations
@@ -115,7 +115,7 @@ module.exports = {
     // enforce padding within blocks
     "padded-blocks": 0,
     // require quotes around object literal property names
-    "quote-props": 0,
+    "quote-props": [2, "as-needed"],
     // specify whether double or single quotes should be used
     "quotes": [2, "double", { "allowTemplateLiterals": true }],
     // Require JSDoc comment
@@ -131,7 +131,7 @@ module.exports = {
     // require or disallow space before blocks
     "space-before-blocks": [2, "always"],
     // require or disallow space before function opening parenthesis
-    "space-before-function-paren": [2, {"anonymous": "always", "named": "never" }],
+    "space-before-function-paren": 0,
     // require or disallow spaces inside parentheses
     "space-in-parens": [2, "never"],
     // require spaces around operators

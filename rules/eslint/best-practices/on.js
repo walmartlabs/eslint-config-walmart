@@ -13,11 +13,11 @@ module.exports = {
     // require return statements to either always or never specify values
     "consistent-return": 2,
     // specify curly brace conventions for all control statements
-    "curly": [2, "all"],
+    "curly": [2, "multi-line"],
     // require default case in switch statements
     "default-case": 0,
     // enforces consistent newlines before or after dots
-    "dot-location": 0,
+    "dot-location": [2, "property"],
     // encourages use of dot notation whenever possible
     "dot-notation": [2, { "allowKeywords": true }],
     // require the use of === and !==

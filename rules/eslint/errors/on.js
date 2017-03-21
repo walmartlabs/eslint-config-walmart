@@ -29,7 +29,7 @@ module.exports = {
     // disallow double-negation boolean casts in a boolean context
     "no-extra-boolean-cast": 2,
     // disallow unnecessary parentheses
-    "no-extra-parens": 2,
+    "no-extra-parens": 0,
     // disallow unnecessary semicolons
     "no-extra-semi": 2,
     // disallow overwriting functions written as function declarations
