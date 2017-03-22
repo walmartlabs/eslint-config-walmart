@@ -114,7 +114,7 @@ module.exports = {
     "operator-linebreak": 0,
     // enforce padding within blocks
     "padded-blocks": 0,
-    // require quotes around object literal property names only when needed
+    // require quotes around object literal property names
     "quote-props": [2, "as-needed"],
     // specify whether double or single quotes should be used
     quotes: [2, "double", { allowTemplateLiterals: true }],

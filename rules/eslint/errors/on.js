@@ -28,7 +28,7 @@ module.exports = {
     "no-ex-assign": 2,
     // disallow double-negation boolean casts in a boolean context
     "no-extra-boolean-cast": 2,
-    // allow unnecessary parentheses
+    // disallow unnecessary parentheses
     "no-extra-parens": 0,
     // disallow unnecessary semicolons
     "no-extra-semi": 2,
