@@ -102,7 +102,7 @@ module.exports = {
     "no-whitespace-before-property": 0,
     // require or disallow padding inside curly braces
     "object-curly-spacing": [0, "always"],
-    // enforce placing object properties on separate lines
+    // enforce placing object properties on separate lines or all on same line
     "object-property-newline": [2, { allowMultiplePropertiesPerLine: true }],
     // allow just one var statement per function
     "one-var": [2, "never"],
@@ -114,7 +114,7 @@ module.exports = {
     "operator-linebreak": 0,
     // enforce padding within blocks
     "padded-blocks": 0,
-    // require quotes around object literal property names
+    // require quotes around object literal property names only when needed
     "quote-props": [2, "as-needed"],
     // specify whether double or single quotes should be used
     quotes: [2, "double", { allowTemplateLiterals: true }],
