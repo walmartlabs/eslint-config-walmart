@@ -954,6 +954,103 @@
   >
   > Global objects like `Math` and `JSON` can look like class functions due to their capitalization. However, they are objects and cannot be invoked as functions.
 
+<a name="objects--curly-spacing"></a><a name="3.14"></a>
+- [3.14](#objects--curly-spacing) Always add spacing around object curly braces.
+
+  > eslint: [`object-curly-spacing`](http://eslint.org/docs/rules/object-curly-spacing)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var product = {id: 1, name: "pokeball"};
+
+  // good
+  var product = { id: 1, name: "pokeball" };
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference. Prettier compatible.
+
+<a name="objects--property-newline"></a><a name="3.15"></a>
+- [3.15](#objects--property-newline) Separate object properties one per line or all on one line.
+
+  > eslint: [`object-property-newline`](http://eslint.org/docs/rules/object-property-newline)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var product = { id: 1, name: "pokeball",
+    price: 12.95
+   };
+
+  // good
+  var product = { id: 1, name: "pokeball", price: 12.95 };
+
+  // also good
+  var product = {
+    id: 1,
+    name: "pokeball",
+    price: 12.95
+  };
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference. Prettier compatible.
+
+<a name="objects--quote-props"></a><a name="3.16"></a>
+- [3.16](#objects--quote-props) Only quote object property literals when needed.
+
+  > eslint: [`quote-props`](http://eslint.org/docs/rules/quote-props)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var product = {
+    "id": 1,
+    "name": pokeball
+  };
+
+  // good
+  var product = {
+    id: 1,
+    name: "pokeball",
+    "category-id": 200
+  };
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference. Prettier compatible.
+
+<a name="objects--dot-location"></a><a name="3.17"></a>
+- [3.17](#objects--dot-location) Dots should appear on the same line as their connecting property.
+
+  > eslint: [`dot-location`](http://eslint.org/docs/rules/dot-location)
+  >
+  > defined in: `rules/eslint/style`
+
+  ```js
+  // bad
+  var price = product.
+    price;
+
+  // good
+  var price = product
+    .price;
+
+  // also good (but not for chaining)
+  var price = product.price;
+  ```
+
+  > Why?
+  >
+  > Walmart code style preference. Prettier compatible.
+
 **[⬆️ back to top](#table-of-contents)**
 
 ## Arrays
@@ -1485,7 +1582,7 @@
   > It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
 
 <a name="functions--arrows-parens"></a><a name="7.10"></a>
-- [7.10](#functions--arrows-parens) If the function body consists of a single expression, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement.
+- [7.10](#functions--arrows-parens) If the function body consists of a single expression, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement. Use parens only if there is more than one param.
 
   > eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html)
   >
@@ -1493,15 +1590,15 @@
 
   ```js
   // bad
-  [1, 2, 3].map(number => `A string containing the ${number}.`);
+  [1, 2, 3].map((number) => `A string containing the ${number}.`);
 
   // good
-  [1, 2, 3].map((number) => `A string containing the ${number}.`);
+  [1, 2, 3].map(number => `A string containing the ${number}.`);
   ```
 
   > Why?
   >
-  > Forcing parens around arrow function parameters helps prevent accidental arrow syntax when a `<=` comparator was intended instead.
+  > Parens around a single param is not required and adds unnecessary noise. Prettier compatible.
 
 <a name="functions--arrows-paren-wrap"></a><a name="7.11"></a>
 - [7.11](#functions--arrows-paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
@@ -2478,31 +2575,12 @@
   >
   > This is just unnecessary.
 
-<a name="comparison--no-extra-parens"></a><a name="11.10"></a>
-- [11.10](#comparison--no-extra-parens) Do not use unnecessary parentheses.
-
-  > eslint: [`no-extra-parens`](http://eslint.org/docs/rules/no-extra-parens)
-  >
-  > defined in: `rules/eslint/errors`
-
-  ```js
-  // bad
-  a = (b * c);
-
-  // good
-  a = b * c;
-  ```
-
-  > Why?
-  >
-  > Unneeded parentheses make code harder to read.
-
 **[⬆️ back to top](#table-of-contents)**
 
 ## Blocks & Whitespace
 
 <a name="blocks--braces"></a><a name="12.1"></a>
-- [12.1](#blocks--braces) Use braces with all single- and multi-line blocks.
+- [12.1](#blocks--braces) Use braces only with multi-line blocks.
 
   > eslint: [`curly`](http://eslint.org/docs/rules/curly)
   >
@@ -2510,17 +2588,17 @@
 
   ```js
   // bad
-  if (test) return false;
-
-  // good
   if (test) {
     return false;
   }
+
+  // good
+  if (test) return false;
   ```
 
   > Why?
   >
-  > Walmart code style preference.
+  > Walmart code style preference. Prettier compatible.
 
 <a name="blocks--cuddled-elses"></a><a name="12.2"></a>
 - [12.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your `if` block's closing brace.
@@ -4338,5 +4416,6 @@
 ## Acknowledgements
 The Walmart JavaScript Style Guide was inspired by:
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+* [Prettier](https://github.com/prettier/prettier)
 
 **[⬆️ back to top](#table-of-contents)**

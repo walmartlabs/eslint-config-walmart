@@ -1,10 +1,8 @@
 "use strict";
 
 module.exports = {
-  "plugins": [
-    "react"
-  ],
-  "rules": {
+  plugins: ["react"],
+  rules: {
     // Prevent missing displayName in a React component definition
     "react/display-name": 0,
     // Forbid certain propTypes

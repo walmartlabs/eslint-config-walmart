@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  "rules": {
+  rules: {
     // enforce return after a callback
     "callback-return": 0,
     // disallow require() outside of the top-level module scope

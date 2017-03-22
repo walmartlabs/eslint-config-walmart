@@ -1,11 +1,11 @@
 "use strict";
 
 module.exports = {
-  "rules": {
+  rules: {
     // require braces in arrow function body
     "arrow-body-style": 0,
     // require parens in arrow function arguments
-    "arrow-parens": 2,
+    "arrow-parens": [2, "as-needed"],
     // require space before/after arrow function's arrow
     "arrow-spacing": 2,
     // verify super() callings in constructors
