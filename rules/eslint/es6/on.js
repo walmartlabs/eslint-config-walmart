@@ -5,7 +5,7 @@ module.exports = {
     // require braces in arrow function body
     "arrow-body-style": 0,
     // require parens in arrow function arguments
-    "arrow-parens": 2,
+    "arrow-parens": 0,
     // require space before/after arrow function's arrow
     "arrow-spacing": 2,
     // verify super() callings in constructors
