@@ -1410,30 +1410,8 @@
   >
   > Creating a function in this way evaluates a string similarly to `eval()`, which opens vulnerabilities.
 
-<a name="functions--signature-spacing"></a><a name="7.7"></a>
-- [7.7](#functions--signature-spacing) Spacing in a function signature.
-
-  > eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren), [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
-  >
-  > defined in: `rules/eslint/style`
-
-  ```js
-  // bad
-  const f = function(){};
-  const g = function (){};
-  const h = function() {};
-
-  // good
-  const x = function () {};
-  const y = function a() {};
-  ```
-
-  > Why?
-  >
-  > Walmart code style preference.
-
-<a name="functions--spread-vs-apply"></a><a name="7.8"></a>
-- [7.8](#functions--spread-vs-apply) Prefer the use of the spread operator `...` to call variadic functions.
+<a name="functions--spread-vs-apply"></a><a name="7.7"></a>
+- [7.7](#functions--spread-vs-apply) Prefer the use of the spread operator `...` to call variadic functions.
 
   > eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
   >
@@ -1459,8 +1437,8 @@
   >
   > It's cleaner, you don't need to supply a context, and you can not easily compose `new` with `apply`.
 
-<a name="functions--arrows-use-them"></a><a name="7.9"></a>
-- [7.9](#functions--arrows-use-them) When you must use function expressions (as when passing an anonymous function), use arrow function notation.
+<a name="functions--arrows-use-them"></a><a name="7.8"></a>
+- [7.8](#functions--arrows-use-them) When you must use function expressions (as when passing an anonymous function), use arrow function notation.
 
   > eslint: [`prefer-arrow-callback`](http://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](http://eslint.org/docs/rules/arrow-spacing.html)
   >
@@ -1484,27 +1462,8 @@
   >
   > It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
 
-<a name="functions--arrows-parens"></a><a name="7.10"></a>
-- [7.10](#functions--arrows-parens) If the function body consists of a single expression, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement.
-
-  > eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html)
-  >
-  > defined in: `rules/eslint/es6`
-
-  ```js
-  // bad
-  [1, 2, 3].map(number => `A string containing the ${number}.`);
-
-  // good
-  [1, 2, 3].map((number) => `A string containing the ${number}.`);
-  ```
-
-  > Why?
-  >
-  > Forcing parens around arrow function parameters helps prevent accidental arrow syntax when a `<=` comparator was intended instead.
-
-<a name="functions--arrows-paren-wrap"></a><a name="7.11"></a>
-- [7.11](#functions--arrows-paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+<a name="functions--arrows-paren-wrap"></a><a name="7.9"></a>
+- [7.9](#functions--arrows-paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
 
   ```js
   // bad
@@ -1527,8 +1486,8 @@
   >
   > It is easier to see where a multi-line function starts and ends when wrapped this way.
 
-<a name="functions--complexity"></a><a name="7.12"></a>
-- [7.12](#functions--complexity) Keep functions simple by limiting branching to 11 paths.
+<a name="functions--complexity"></a><a name="7.10"></a>
+- [7.10](#functions--complexity) Keep functions simple by limiting branching to 11 paths.
 
   > eslint: [`complexity`](http://eslint.org/docs/rules/complexity)
   >
@@ -1551,8 +1510,8 @@
   >
   > Too many paths can be tough to wrangle. Consider refactoring.
 
-<a name="functions--consistent-return"></a><a name="7.13"></a>
-- [7.13](#functions--consistent-return) Make sure a function either never returns a value or always returns a value.
+<a name="functions--consistent-return"></a><a name="7.11"></a>
+- [7.11](#functions--consistent-return) Make sure a function either never returns a value or always returns a value.
 
   > eslint: [`consistent-return`](http://eslint.org/docs/rules/consistent-return)
   >
@@ -1579,8 +1538,8 @@
   >
   > If some but not all branches of a function have an explicit return value, this may be a sign of a typo.
 
-<a name="functions--no-extra-bind"></a><a name="7.14"></a>
-- [7.14](#functions--no-extra-bind) Do not use `bind()` unnecessarily.
+<a name="functions--no-extra-bind"></a><a name="7.12"></a>
+- [7.12](#functions--no-extra-bind) Do not use `bind()` unnecessarily.
 
   > eslint: [`no-extra-bind`](http://eslint.org/docs/rules/no-extra-bind)
   >
@@ -1602,8 +1561,8 @@
   >
   > Functions that do not make reference to `this` do not benefit from binding `this` context.
 
-<a name="functions--no-useless-call"></a><a name="7.15"></a>
-- [7.15](#functions--no-useless-call) Do not use `call()` or `apply()` unnecessarily.
+<a name="functions--no-useless-call"></a><a name="7.13"></a>
+- [7.13](#functions--no-useless-call) Do not use `call()` or `apply()` unnecessarily.
 
   > eslint: [`no-useless-call`](http://eslint.org/docs/rules/no-useless-call)
   >
@@ -1623,8 +1582,8 @@
   >
   > `call()` and `apply()` are slower than normal function invocation and should not be used when a regular function would suffice.
 
-<a name="functions--no-return-assign"></a><a name="7.16"></a>
-- [7.16](#functions--no-return-assign) Do not make assignments in a return statement.
+<a name="functions--no-return-assign"></a><a name="7.14"></a>
+- [7.14](#functions--no-return-assign) Do not make assignments in a return statement.
 
   > eslint: [`no-return-assign`](http://eslint.org/docs/rules/no-return-assign)
   >
@@ -1647,8 +1606,8 @@
   >
   > It can be confusing to understand if an equality check `===` was intended instead of an assignment when used in a return statement.
 
-<a name="functions--throw"></a><a name="7.17"></a>
-- [7.17](#functions--throw) Only throw `Error` objects.
+<a name="functions--throw"></a><a name="7.15"></a>
+- [7.15](#functions--throw) Only throw `Error` objects.
 
   > eslint: [`no-throw-literal`](http://eslint.org/docs/rules/no-throw-literal)
   >
@@ -1666,8 +1625,8 @@
   >
   > `Error` objects contain extra metadata about how they were thrown.
 
-<a name="functions--no-dupe-args"></a><a name="7.18"></a>
-- [7.18](#functions--no-dupe-args) Don't use the same parameter more than once in a function definition.
+<a name="functions--no-dupe-args"></a><a name="7.16"></a>
+- [6.17](#functions--no-dupe-args) Don't use the same parameter more than once in a function definition.
 
   > eslint: [`no-dupe-args`](http://eslint.org/docs/rules/no-dupe-args)
   >
@@ -1684,8 +1643,8 @@
   >
   > The second parameter with the same name will take precedence, which is probably an error.
 
-<a name="functions--no-exception-assign"></a><a name="7.19"></a>
-- [7.19](#functions--no-exception-assign) Don't make an assignment on the exception parameter in a `catch` clause.
+<a name="functions--no-exception-assign"></a><a name="7.17"></a>
+- [7.17](#functions--no-exception-assign) Don't make an assignment on the exception parameter in a `catch` clause.
 
   > eslint: [`no-ex-assign`](http://eslint.org/docs/rules/no-ex-assign)
   >
@@ -1703,8 +1662,8 @@
   >
   > Overwriting the exception variable will make it inaccessible.
 
-<a name="functions--override-declarations"></a><a name="7.20"></a>
-- [7.20](#functions--override-declarations") Do not override function declarations.
+<a name="functions--override-declarations"></a><a name="7.18"></a>
+- [7.18](#functions--override-declarations") Do not override function declarations.
 
   > eslint: [`no-func-assign`](http://eslint.org/docs/rules/no-func-assign)
   >
@@ -1720,8 +1679,8 @@
   >
   > Overriding a function declaration is likely a mistake.
 
-<a name="functions--max-nested-callbacks"></a><a name="7.21"></a>
-- [7.21](#functions--max-nested-callbacks) Do not nest callbacks more than three deep.
+<a name="functions--max-nested-callbacks"></a><a name="7.19"></a>
+- [7.19](#functions--max-nested-callbacks) Do not nest callbacks more than three deep.
 
   > eslint: [`max-nested-callbacks`](http://eslint.org/docs/rules/max-nested-callbacks)
   >
@@ -1744,8 +1703,8 @@
   >
   > Nesting more than 3 callbacks can be difficult to read. Consider refactoring.
 
-<a name="functions--max-params"></a><a name="7.22"></a>
-- [7.22](#functions--max-params) Do not use more than three parameters in a function call.
+<a name="functions--max-params"></a><a name="7.20"></a>
+- [7.20](#functions--max-params) Do not use more than three parameters in a function call.
 
   > eslint: [`max-params`](http://eslint.org/docs/rules/max-params)
   >
@@ -1774,8 +1733,8 @@
   >
   > It can be difficult to remember the order of many parameters. Pass an options object instead to handle large amounts of argument data.
 
-<a name="functions--max-statements"></a><a name="7.23"></a>
-- [7.23](#functions--max-statements) Do not have more than 15 statements in a function.
+<a name="functions--max-statements"></a><a name="7.21"></a>
+- [7.21](#functions--max-statements) Do not have more than 15 statements in a function.
 
   > eslint: [`max-statements`](http://eslint.org/docs/rules/max-statements)
   >
@@ -2478,31 +2437,12 @@
   >
   > This is just unnecessary.
 
-<a name="comparison--no-extra-parens"></a><a name="11.10"></a>
-- [11.10](#comparison--no-extra-parens) Do not use unnecessary parentheses.
-
-  > eslint: [`no-extra-parens`](http://eslint.org/docs/rules/no-extra-parens)
-  >
-  > defined in: `rules/eslint/errors`
-
-  ```js
-  // bad
-  a = (b * c);
-
-  // good
-  a = b * c;
-  ```
-
-  > Why?
-  >
-  > Unneeded parentheses make code harder to read.
-
 **[⬆️ back to top](#table-of-contents)**
 
 ## Blocks & Whitespace
 
 <a name="blocks--braces"></a><a name="12.1"></a>
-- [12.1](#blocks--braces) Use braces with all single- and multi-line blocks.
+- [12.1](#blocks--braces) Use braces only with multi-line blocks.
 
   > eslint: [`curly`](http://eslint.org/docs/rules/curly)
   >
@@ -2510,12 +2450,16 @@
 
   ```js
   // bad
-  if (test) return false;
+  if (test)
+    return false;
 
   // good
   if (test) {
     return false;
   }
+
+  // also good
+  if (test) return false;
   ```
 
   > Why?
