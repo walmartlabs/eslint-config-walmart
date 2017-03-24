@@ -69,7 +69,7 @@ module.exports = {
     // Validate JSX indentation
     "react/jsx-indent": 0,
     // Validate props indentation in JSX
-    "react/jsx-indent-props": [2, 2],
+    "react/jsx-indent-props": 0,
     // Validate JSX has key prop when in array or iterator
     "react/jsx-key": 2,
     // Limit maximum of props on a single line in JSX
