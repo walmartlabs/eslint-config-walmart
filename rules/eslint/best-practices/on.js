@@ -12,8 +12,8 @@ module.exports = {
     "complexity": [2, 11],
     // require return statements to either always or never specify values
     "consistent-return": 2,
-    // specify curly brace conventions for all control statements
-    "curly": [2, "all"],
+    // specify curly brace conventions for multi-line control statements
+    "curly": [2, "multi-line"],
     // require default case in switch statements
     "default-case": 0,
     // enforces consistent newlines before or after dots
