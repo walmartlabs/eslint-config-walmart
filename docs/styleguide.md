@@ -2499,7 +2499,7 @@
 <a name="whitespace--spaces"></a><a name="12.3"></a>
 - [12.3](#whitespace--spaces) Use soft tabs set to 2 spaces.
 
-  > eslint: [`indent`](http://eslint.org/docs/rules/indent.html), [`no-mixed-spaces-and-tabs`](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs), [`no-trailing-spaces`](http://eslint.org/docs/rules/no-trailing-spaces)
+  > eslint: [`no-mixed-spaces-and-tabs`](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs), [`no-trailing-spaces`](http://eslint.org/docs/rules/no-trailing-spaces)
   >
   > defined in: `rules/eslint/style`
 
