@@ -4196,10 +4196,6 @@
 <a name="jsx--indent-props"></a><a name="17.15"></a>
 - [17.15](#jsx--indent-props) Multiline props should be indented 2 spaces.
 
-  > eslint: [`react/jsx-indent-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md)
-  >
-  > defined in: `rules/react`
-
   ```js
   // bad
   <Button
