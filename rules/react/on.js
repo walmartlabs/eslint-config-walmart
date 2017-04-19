@@ -46,7 +46,7 @@ module.exports = {
     // Enforce propTypes declarations alphabetical sorting
     "sort-prop-types": 0,
     // Prevent missing parentheses around multilines JSX
-    "react/wrap-multilines": 2,
+    "react/jsx-wrap-multilines": 2,
 
     // ========================================================================
     //                                JSX Specific Rules
