@@ -2744,7 +2744,7 @@
   > Walmart code style preference.
 
 <a name="whitespace--max-len"></a><a name="12.10"></a>
-- [12.10](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: URLs are exempt from this rule.
+- [12.10](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: URLs and `import` and `require` statements and  are exempt from this rule.
 
   > eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html)
   >
