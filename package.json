@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-walmart",
   "description": "A set of default eslint configurations, Walmart Labs style.",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Eric Baer <me@ericbaer.com>",
   "homepage": "https://github.com/walmartlabs/eslint-config-walmart",
   "bugs": {
