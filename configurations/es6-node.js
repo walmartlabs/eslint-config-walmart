@@ -24,6 +24,8 @@ module.exports = {
     // suggest using Reflect methods where applicable
     "prefer-reflect": 0,
     // require that all functions are run in strict mode
-    strict: [2, "global"]
+    strict: [2, "global"],
+    // warn on function param reassignment or mutation
+    "no-param-reassign": 1
   }
 };
