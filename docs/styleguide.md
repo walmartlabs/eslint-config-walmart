@@ -4103,7 +4103,7 @@
 <a name="jsx--wrap-multilines"></a><a name="17.11"></a>
 - [17.11](#jsx--wrap-multilines) Wrap multiline JSX in parentheses.
 
-  > eslint: [`react/wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
+  > eslint: [`react/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
   >
   > defined in: `rules/react`
 
