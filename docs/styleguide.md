@@ -492,7 +492,7 @@
 <a name="variables--unused-expressions"></a><a name="2.14"></a>
 - [2.14](#variables--unused-expresions) Do not leave expressions unused.
 
-  > eslint: [`no-unused-expressions`]
+  > eslint: [`no-unused-expressions`](https://eslint.org/docs/rules/no-unused-expressions)
   >
   > defined in: `rules/eslint/best-practices`
 
