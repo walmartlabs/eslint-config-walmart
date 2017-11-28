@@ -11,7 +11,7 @@ module.exports = {
     // verify super() callings in constructors
     "constructor-super": 2,
     // enforce no space before * and space after * in generator functions
-    "generator-star-spacing": ["error", {"before": false, "after": true}]
+    "generator-star-spacing": ["error", {"before": false, "after": true}],
     // disallow modifying variables of class declarations
     "no-class-assign": 2,
     // disallow arrow functions where they could be confused with comparisons
