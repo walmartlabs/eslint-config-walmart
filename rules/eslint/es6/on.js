@@ -10,8 +10,8 @@ module.exports = {
     "arrow-spacing": 2,
     // verify super() callings in constructors
     "constructor-super": 2,
-    // enforce the spacing around the * in generator functions
-    "generator-star-spacing": 2,
+    // enforce no space before * and space after * in generator functions
+    "generator-star-spacing": ["warn", {before: false, after: true}],
     // disallow modifying variables of class declarations
     "no-class-assign": 2,
     // disallow arrow functions where they could be confused with comparisons
