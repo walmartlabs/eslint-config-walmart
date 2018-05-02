@@ -49,6 +49,7 @@ This package includes the following complete and ready to use configurations:
 - `walmart/configurations/es5-test` - ES5 + test
 - `walmart/configurations/es5` - ES5 config
 - `walmart/configurations/es6-browser` - ES6 + browser
+- `walmart/configurations/es6-node-test` - ES6 + node 4.x + test
 - `walmart/configurations/es6-node` - ES6 + node 4.x
 - `walmart/configurations/es6-react-test` - ES6 + react + test
 - `walmart/configurations/es6-react` - ES6 + react
