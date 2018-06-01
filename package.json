@@ -7,6 +7,10 @@
   "bugs": {
     "url": "https://github.com/walmartlabs/eslint-config-walmart/issues"
   },
+  "files": [
+    "configurations",
+    "rules"
+  ],
   "repository": "git://github.com/walmartlabs/eslint-config-walmart.git",
   "private": false,
   "dependencies": {},
