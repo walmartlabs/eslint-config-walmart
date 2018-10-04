@@ -31,10 +31,11 @@ This project is the maintained offshoot of [eslint-config-defaults](https://gith
 2.  Then, install any additional dependencies required by your configuration. (See
     [Dependencies](#dependencies) section below.)
 
-        e.g.
-        ```bash
-        $ npm install --save-dev eslint-plugin-filenames babel-eslint
-        ```
+    e.g.
+    
+    ```bash
+    $ npm install --save-dev eslint-plugin-filenames babel-eslint
+    ```
 
 ## Usage
 
