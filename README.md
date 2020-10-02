@@ -1,3 +1,11 @@
+***
+# NOTICE:
+ 
+## This repository has been archived and is not supported.
+ 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+***
+
 <h1 align="center">eslint-config-walmart</h1>
 
 <p align="center">
